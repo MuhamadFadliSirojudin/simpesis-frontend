@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Outfit", "sans-serif";
+}
+
+@theme {
+  --font-display: "Outfit", "sans-serif";
+
+  --color-blue-bg: #010B3E;
+  --color-blue-btn: #95A2E1;
+
+  --shadow-form-container: 0  4px 6px rgba(0, 0, 0, 0.1);
+}
