@@ -56,15 +56,15 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
 
         <TabelReportNilai data={data} />
 
-        <div className="w-full flex flex-col items-end pr-10 pt-20">
-          <div className="w-[10%] flex flex-col items-center text-xl gap-4 text-center">
-            <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[180px]">
-              {data[0].modul.penyusun}
-            </h1>
-            <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[180px]">
-              NIP.{data[0].modul.nip}
-            </h1>
-          </div>
+        {/* Area tanda tangan */}
+        <div className="w-full flex flex-col items-center pt-20 pb-10 text-center">
+          <div className="h-24" /> {/* spasi kosong sebagai tempat tanda tangan */}
+          <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px] font-semibold">
+            {data[0].modul.penyusun}
+          </h1>
+          <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
+            NIP.{data[0].modul.nip}
+          </h1>
         </div>
       </div>
     );
