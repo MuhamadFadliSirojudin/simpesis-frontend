@@ -61,7 +61,7 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         <div className="text-center flex flex-col gap-2">
           <h1 className="font-semibold">Mengetahui :</h1>
           <h1 className="font-semibold">Kepala Sekolah</h1>
-          <div className="h-22"></div> {/* jarak tanda tangan */}
+          <div className="h-20"></div> {/* jarak tanda tangan */}
           <h1 className="font-semibold">{data[0].modul.penyusun}</h1>
           <h1 className="font-semibold">NIP. {data[0].modul.nip}</h1>
         </div>
