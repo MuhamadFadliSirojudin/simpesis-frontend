@@ -43,7 +43,9 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
             </tr>
             <tr className="h-16 border-b border-gray-400 rounded">
               <td className="align-top px-4 py-2 rounded">Topik/Sub Topik</td>
-              <td className="align-top px-4 py-2 rounded">test</td>
+              <td className="align-top px-4 py-2 rounded">
+                {data[0]?.modul.topik}
+              </td>
             </tr>
             <tr className="h-16 border-b border-gray-400 rounded">
               <td className="align-top px-4 py-2 rounded">Nama Siswa</td>
