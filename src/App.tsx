@@ -3,6 +3,7 @@ import Academics from "./components/layout/Home/Academics";
 import Hero from "./components/layout/Home/Hero";
 import { useLocation } from "react-router-dom";
 
+
 function App() {
   const location = useLocation();
 
