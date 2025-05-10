@@ -60,10 +60,13 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
 
         <TabelReportNilai data={data} />
 
-        <div className="w-full flex flex-col items-end pr-10 pt-20">
-          <div className="w-[10%] flex flex-col items-center text-xl gap-16">
-            <h1>{data[0].modul.penyusun}</h1>
-            <h1>NIP.{data[0].modul.nip}</h1>
+          <div className="w-[10%] flex flex-col items-center text-xl gap-4 text-center">
+            <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[180px]">
+              {data[0].modul.penyusun}
+            </h1>
+            <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[180px]">
+              NIP.{data[0].modul.nip}
+            </h1>
           </div>
         </div>
       </div>
