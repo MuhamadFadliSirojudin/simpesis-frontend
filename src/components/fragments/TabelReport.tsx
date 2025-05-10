@@ -59,12 +59,14 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         {/* Area tanda tangan */}
         <div className="w-full flex flex-col items-center pt-20 pb-10 text-center">
           <div className="h-24" /> {/* spasi kosong sebagai tempat tanda tangan */}
-          <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px] font-semibold">
-            {data[0].modul.penyusun}
-          </h1>
-          <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-            NIP.{data[0].modul.nip}
-          </h1>
+          <div className="w-full max-w-[600px] text-center px-4">
+            <h1 className="text-lg font-semibold truncate">
+              {data[0].modul.penyusun}
+            </h1>
+            <h1 className="text-base truncate">
+              NIP.{data[0].modul.nip}
+            </h1>
+          </div>
         </div>
       </div>
     );
