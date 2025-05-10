@@ -18,22 +18,18 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
           <tbody className="border border-gray-400">
             <tr className="h-16 border-b border-gray-400">
-              <td className="align-top w-[35%] px-4 py-2 ">Semester</td>
-              <td className="align-top px-4 py-2 ">{data[0].siswa.semester}</td>
+              <td className="align-top w-[35%] px-4 py-2">Semester</td>
+              <td className="align-top px-4 py-2">{data[0].siswa.semester}</td>
             </tr>
-            <tr className="h-16 border-b border-gray-400 ">
-              <td className="align-top px-4 py-2 ">Penyusun</td>
-              <td className="align-top px-4 py-2 ">
-                {data[0]?.modul.penyusun}
-              </td>
+            <tr className="h-16 border-b border-gray-400">
+              <td className="align-top px-4 py-2">Penyusun</td>
+              <td className="align-top px-4 py-2">{data[0]?.modul.penyusun}</td>
             </tr>
-            <tr className="h-16 border border-gray-400 ">
-              <td className="align-top px-4 py-2 ">Fase/Kelompok</td>
-              <td className="align-top px-4 py-2 ">
-                {data[0]?.siswa.kelompok}
-              </td>
+            <tr className="h-16 border border-gray-400">
+              <td className="align-top px-4 py-2">Fase/Kelompok</td>
+              <td className="align-top px-4 py-2">{data[0]?.siswa.kelompok}</td>
             </tr>
-            <tr className="h-16 border-b border-gray-400 ">
+            <tr className="h-16 border-b border-gray-400">
               <td className="align-top px-4 py-2 rounded">
                 Tujuan Pembelajaran
               </td>
@@ -60,6 +56,7 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
 
         <TabelReportNilai data={data} />
 
+        <div className="w-full flex flex-col items-end pr-10 pt-20">
           <div className="w-[10%] flex flex-col items-center text-xl gap-4 text-center">
             <h1 className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[180px]">
               {data[0].modul.penyusun}
