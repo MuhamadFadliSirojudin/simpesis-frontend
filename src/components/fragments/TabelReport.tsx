@@ -62,20 +62,20 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         <div className="w-full flex justify-around items-start pt-10">
         {/* Kolom Kepala Sekolah */}
         <div className="flex flex-col items-center text-xl gap-1">
-          <p className="font-semibold">Mengetahui :</p>
-          <p className="font-semibold">Kepala Sekolah</p>
+          <p >Mengetahui :</p>
+          <p >Kepala Sekolah</p>
           <div className="h-20" /> {/* Spacer tanda tangan */}
           <p className="font-semibold">Putri Irma Susanti, M.Pd.</p>
-          <p>NUPTK. 3859764665300042</p>
+          <p className="font-semibold">NUPTK. 3859764665300042</p>
         </div>
 
         {/* Kolom Wali Kelas */}
         <div className="flex flex-col items-center text-xl gap-1">
           <p className="font-semibold">&nbsp;</p>
-          <p className="font-semibold">Wali Kelas</p>
+          <p className="font-semibold">Wali Kelas,</p>
           <div className="h-20" /> {/* Spacer tanda tangan */}
           <p className="font-semibold">{data[0].modul.penyusun}</p>
-          <p>NUPTK. {data[0].modul.nip}</p>
+          <p className="font-semibold">NUPTK. {data[0].modul.nip}</p>
         </div>
       </div>
       </div>
