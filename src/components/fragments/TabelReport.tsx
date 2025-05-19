@@ -59,20 +59,23 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         <TabelReportNilai data={data} />
 
         {/* Area tanda tangan */}
-        <div className="w-full flex flex-col items-left pt-20">
-        <div className="text-left flex flex-col gap-2">
-          <h1 className="font-semibold">Mengetahui :</h1>
-          <h1 className="font-semibold">Kepala Sekolah</h1>
-          <div className="h-20"></div> {/* jarak tanda tangan */}
-          <h1 className="font-semibold">Putri Irma Susanti, M.Pd.</h1>
-          <h1 className="font-semibold">NUPTK. 3859764665300042</h1>
+        <div className="w-full flex justify-around items-start pt-20">
+        {/* Kolom Kepala Sekolah */}
+        <div className="flex flex-col items-center text-xl gap-4">
+          <p className="font-semibold">Mengetahui :</p>
+          <p className="font-semibold">Kepala Sekolah</p>
+          <div className="h-20" /> {/* Spacer tanda tangan */}
+          <p className="font-semibold">Putri Irma Susanti, M.Pd.</p>
+          <p>NUPTK. 3859764665300042</p>
         </div>
-        <div className="w-full flex flex-col items-right pt-20">
-        <div className="text-right flex flex-col gap-2">
-          <h1 className="font-semibold">Wali Kelas</h1>
-          <div className="h-20"></div> {/* jarak tanda tangan */}
-          <h1 className="font-semibold">{data[0].modul.penyusun}</h1>
-          <h1 className="font-semibold">NUPTK. {data[0].modul.nip}</h1>
+
+        {/* Kolom Wali Kelas */}
+        <div className="flex flex-col items-center text-xl gap-4">
+          <p className="font-semibold">&nbsp;</p>
+          <p className="font-semibold">Wali Kelas</p>
+          <div className="h-20" /> {/* Spacer tanda tangan */}
+          <p className="font-semibold">{data[0].modul.penyusun}</p>
+          <p>NUPTK. {data[0].modul.nip}</p>
         </div>
       </div>
       </div>
