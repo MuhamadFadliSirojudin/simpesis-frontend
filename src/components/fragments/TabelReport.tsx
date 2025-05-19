@@ -59,9 +59,9 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         <TabelReportNilai data={data} />
 
         {/* Area tanda tangan */}
-        <div className="w-full flex justify-around items-start pt-20">
+        <div className="w-full flex justify-around items-start pt-10">
         {/* Kolom Kepala Sekolah */}
-        <div className="flex flex-col items-center text-xl gap-4">
+        <div className="flex flex-col items-center text-xl gap-1">
           <p className="font-semibold">Mengetahui :</p>
           <p className="font-semibold">Kepala Sekolah</p>
           <div className="h-20" /> {/* Spacer tanda tangan */}
@@ -70,7 +70,7 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         </div>
 
         {/* Kolom Wali Kelas */}
-        <div className="flex flex-col items-center text-xl gap-4">
+        <div className="flex flex-col items-center text-xl gap-1">
           <p className="font-semibold">&nbsp;</p>
           <p className="font-semibold">Wali Kelas</p>
           <div className="h-20" /> {/* Spacer tanda tangan */}
