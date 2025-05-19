@@ -22,7 +22,7 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
               <td className="align-top px-4 py-2">{data[0].siswa.semester}</td>
             </tr>
             <tr className="h-16 border-b border-gray-400">
-              <td className="align-top px-4 py-2">Penyusun</td>
+              <td className="align-top px-4 py-2">Wali Kelas</td>
               <td className="align-top px-4 py-2">{data[0]?.modul.penyusun}</td>
             </tr>
             <tr className="h-16 border border-gray-400">
@@ -59,13 +59,20 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
         <TabelReportNilai data={data} />
 
         {/* Area tanda tangan */}
-        <div className="w-full flex flex-col items-center pt-20">
-        <div className="text-center flex flex-col gap-2">
+        <div className="w-full flex flex-col items-left pt-20">
+        <div className="text-left flex flex-col gap-2">
           <h1 className="font-semibold">Mengetahui :</h1>
           <h1 className="font-semibold">Kepala Sekolah</h1>
           <div className="h-20"></div> {/* jarak tanda tangan */}
+          <h1 className="font-semibold">Putri Irma Susanti, M.Pd.</h1>
+          <h1 className="font-semibold">NUPTK. 3859764665300042</h1>
+        </div>
+        <div className="w-full flex flex-col items-right pt-20">
+        <div className="text-right flex flex-col gap-2">
+          <h1 className="font-semibold">Wali Kelas</h1>
+          <div className="h-20"></div> {/* jarak tanda tangan */}
           <h1 className="font-semibold">{data[0].modul.penyusun}</h1>
-          <h1 className="font-semibold">NIP. {data[0].modul.nip}</h1>
+          <h1 className="font-semibold">NUPTK. {data[0].modul.nip}</h1>
         </div>
       </div>
       </div>
