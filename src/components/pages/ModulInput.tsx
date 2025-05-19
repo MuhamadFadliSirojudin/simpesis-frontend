@@ -85,7 +85,7 @@ const ModulInput = () => {
         <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-2">
             <label htmlFor="penyusun" className="text-base font-semibold">
-              Penyusun
+              Wali Kelas
             </label>
             <input
               type="text"
@@ -98,7 +98,7 @@ const ModulInput = () => {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="nip" className="text-base font-semibold">
-              NIP Penyusun
+              NUPTK
             </label>
             <input
               type="text"
