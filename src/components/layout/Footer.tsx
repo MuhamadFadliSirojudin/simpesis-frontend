@@ -6,7 +6,7 @@ const Footer = () => {
 
         <div className="h-full">
           <h1 className="font-bold text-lg">Contact</h1>
-          <p>(0265) 331860</p>
+          <p>(+62) 81320655012</p>
           <p>JL. Dadaha No.18, Kahuripan</p>
           <p>Kec. Tawang</p>
           <p>Kota Tasikmalaya, Jawa Barat</p>

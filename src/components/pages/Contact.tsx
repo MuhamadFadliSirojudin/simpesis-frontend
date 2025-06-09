@@ -15,7 +15,7 @@ const Contact = () => {
           Tasikmalaya, Jawa Barat
         </h1>
         <h1 className="text-white text-center text-2xl font-bold">
-          Phone Number <br /> (0265) 331860
+          Phone Number <br /> (+62) 813-2065-5012
         </h1>
       </div>
     </div>
