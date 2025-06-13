@@ -12,6 +12,7 @@ const Register = () => {
     const formDataObj = Object.fromEntries(formData.entries());
 
     if (
+      !formDataObj.nama ||
       !formDataObj.username ||
       !formDataObj.password ||
       !formDataObj.confirmPassword
@@ -47,6 +48,13 @@ const Register = () => {
         <h1 className="text-center text-4xl">Login Administrator</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-10">
           <div className="flex flex-col gap-5">
+            <label htmlFor="nama">Nama Lengkap</label>
+            <input
+              className="bg-white text-black rounded-lg h-8 px-2"
+              type="text"
+              id="nama"
+              name="nama"
+            />
             <label htmlFor="username">Username</label>
             <input
               className="bg-white text-black rounded-lg h-8 px-2"
