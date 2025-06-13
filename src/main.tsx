@@ -11,7 +11,7 @@ import NilaiIInput from "./components/pages/NilaiIInput.tsx";
 import Register from "./components/pages/Register.tsx";
 import GetReport from "./components/pages/GetReport.tsx";
 import SiswaInput from "./components/pages/SiswaInput.tsx";
-import AdminMenu from "./components/pages/AdminMenu.tsx";
+import Menu from "./components/pages/Menu.tsx";
 import Contact from "./components/pages/Contact.tsx";
 import { AuthProvider } from "./libs/auth-context.tsx";
 
@@ -30,7 +30,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/siswa" element={<SiswaInput />} />
             <Route path="/laporan" element={<GetReport />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<AdminMenu />} />
+            <Route path="/admin" element={<Menu />} />
           </Route>
         </Routes>
       </AuthProvider>
