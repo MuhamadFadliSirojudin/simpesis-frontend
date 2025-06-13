@@ -115,13 +115,11 @@ const KelolaGuru = () => {
           onChange={handleChange}
           className="border border-[#ccc] rounded focus:border-blue-800 focus:outline-none p-1 w-full resize-none flex items-start justify-start h-10"
         />
-       <div className="gap-1 justify-around p-10">
         {isEdit && (
-          <p className="text-sm text-gray-500 italic">
+          <p className="text-sm text-gray-500 italic p-1">
             Kosongkan jika tidak ingin mengganti password
           </p>
         )}
-        </div>
         <input
           type="text"
           name="nuptk"
