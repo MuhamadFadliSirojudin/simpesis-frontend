@@ -97,7 +97,7 @@ const KelolaGuru = () => {
           placeholder="Nama Lengkap"
           value={form.nama}
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border border-[#ccc] rounded focus:border-blue-800 focus:outline-none p-1 w-full resize-none flex items-start justify-start h-10"
         />
         <input
           type="text"
@@ -105,7 +105,7 @@ const KelolaGuru = () => {
           placeholder="Username"
           value={form.username}
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border border-[#ccc] rounded focus:border-blue-800 focus:outline-none p-1 w-full resize-none flex items-start justify-start h-10"
         />
         <input
           type="password"
@@ -113,7 +113,7 @@ const KelolaGuru = () => {
           placeholder={isEdit ? "Ubah Password (opsional)" : "Password"}
           value={form.password}
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border border-[#ccc] rounded focus:border-blue-800 focus:outline-none p-1 w-full resize-none flex items-start justify-start h-10"
         />
         {isEdit && (
           <p className="text-sm text-gray-500 italic">
@@ -126,7 +126,7 @@ const KelolaGuru = () => {
           placeholder="NUPTK"
           value={form.nuptk}
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border border-[#ccc] rounded focus:border-blue-800 focus:outline-none p-1 w-full resize-none flex items-start justify-start h-10"
         />
         <div className="flex gap-2">
           <button
