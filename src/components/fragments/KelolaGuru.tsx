@@ -142,7 +142,7 @@ const KelolaGuru = () => {
                 setIsEdit(false);
                 setForm({ id: null, nama: "", username: "", password: "", nuptk: "" });
               }}
-              className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500"
+              className="bg-blue-900 text-white focus:outline-none p-1 w-full resize-none rounded hover:bg-blue-500"
             >
               Batal
             </button>
@@ -151,7 +151,7 @@ const KelolaGuru = () => {
       </form>
 
       <div>
-        <h2 className="bg-blue-900 text-white hover:bg-blue-800 cursor-pointer">Daftar Guru:</h2>
+        <h2 className="bg-blue-900 text-white hover:bg-blue-800 overflow-x-autos rounded w-full">Daftar Guru:</h2>
         <ul className="flex flex-col gap-2">
           {guruList.map((guru) => (
             <li
