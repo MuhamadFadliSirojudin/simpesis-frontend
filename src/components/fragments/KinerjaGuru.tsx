@@ -31,9 +31,9 @@ const KinerjaGuru = () => {
       <div className="overflow-x-auto rounded w-full"></div>
       <h2 className="text-xl text-center font-semibold mb-6">Kinerja Guru</h2>
 
-      <table className="min-w-full bg-white border border-gray-300 text-left">
+      <table className="min-w-full bg-white border border-gray-200 text-left">
         <thead>
-          <tr className="bg-blue-900 text-white text-sm">
+          <tr className="bg-blue-900 text-white text-white">
             <th className="px-4 py-2 border text-center">No</th>
             <th className="px-4 py-2 border text-center">Nama Guru</th>
             <th className="px-4 py-2 border text-center">Jumlah Siswa</th>
@@ -45,13 +45,13 @@ const KinerjaGuru = () => {
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan={6} className="text-center py-6 text-gray-500">
+              <td colSpan={6} className="text-center py-4 text-gray-500">
                 Tidak ada data guru ditemukan.
               </td>
             </tr>
           ) : (
             data.map((guru, i) => (
-              <tr key={i} className="hover:bg-blue-50 text-sm">
+              <tr key={i} className="hover:bg-blue-50 p-4 transition">
                 <td className="px-4 py-2 border text-center">{i + 1}</td>
                 <td className="px-4 py-2 border">{guru.nama}</td>
                 <td className="px-4 py-2 border text-center">{guru.jumlahSiswa}</td>
