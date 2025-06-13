@@ -116,7 +116,7 @@ const KelolaGuru = () => {
           className="border border-[#ccc] rounded focus:border-blue-800 focus:outline-none p-1 w-full resize-none flex items-start justify-start h-10"
         />
         {isEdit && (
-          <p className="text-sm text-gray-500 italic">
+          <p className="text-sm text-gray-500 italic gap-1">
             Kosongkan jika tidak ingin mengganti password
           </p>
         )}
@@ -151,7 +151,7 @@ const KelolaGuru = () => {
       </form>
 
       <div>
-        <h2 className="bg-blue-900 text-white hover:bg-blue-800 overflow-x-autos rounded w-full">Daftar Guru:</h2>
+        <h2 className="bg-blue-900 text-white min-h-[100vh] h-full w-full flex flex-col items-center gap-1 justify-around bg-[#f4f4f9] p-10">Daftar Guru:</h2>
         <ul className="flex flex-col gap-2">
           {guruList.map((guru) => (
             <li
