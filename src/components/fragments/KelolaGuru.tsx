@@ -152,34 +152,34 @@ const KelolaGuru = () => {
         </div>
       </form>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded w-full">
         <h2 className="text-lg font-semibold mb-4">Daftar Guru:</h2>
-        <table className="min-w-full border border-gray-300 text-left">
+        <table className="min-w-full bg-white border border-gray-200 text-left">
           <thead>
-            <tr className="bg-gray-100">
-              <th className="px-4 py-2 border">No</th>
-              <th className="px-4 py-2 border">Nama</th>
-              <th className="px-4 py-2 border">Username</th>
-              <th className="px-4 py-2 border">NUPTK</th>
-              <th className="px-4 py-2 border">Aksi</th>
+            <tr className="bg-blue-900 text-white">
+              <th className="px-4 py-2 border text-center">No</th>
+              <th className="px-4 py-2 border text-center">Nama</th>
+              <th className="px-4 py-2 border text-center">Username</th>
+              <th className="px-4 py-2 border text-center">NUPTK</th>
+              <th className="px-4 py-2 border text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
             {guruList.map((guru, index) => (
-              <tr key={guru.id} className="hover:bg-gray-50">
-                <td className="px-4 py-2 border">{index + 1}</td>
+              <tr key={guru.id} className="hover:bg-blue-50 p-4 transition">
+                <td className="px-4 py-2 border text-center">{index + 1}</td>
                 <td className="px-4 py-2 border">{guru.nama}</td>
                 <td className="px-4 py-2 border">{guru.username}</td>
                 <td className="px-4 py-2 border">{guru.nuptk}</td>
                 <td className="px-4 py-2 border flex gap-2">
                   <button
-                    className="text-sm text-white bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
+                    className="text-sm text-white cursor-pointer bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
                     onClick={() => handleEdit(guru)}
                   >
                     Edit
                   </button>
                   <button
-                    className="text-sm text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                    className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
                     onClick={() => handleDelete(guru.id)}
                   >
                     Hapus
