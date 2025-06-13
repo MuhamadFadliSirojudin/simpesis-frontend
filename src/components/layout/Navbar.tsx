@@ -29,7 +29,7 @@ const Navbar = () => {
         {/* Jika sudah login, tampilkan menu berdasarkan role */}
         {isAuthenticated && role === "admin" && (
           <li>
-            <NavLink to={"/admin"}>Admin Menu</NavLink>
+            <NavLink to={"/admin"}>Menu</NavLink>
           </li>
         )}
 
