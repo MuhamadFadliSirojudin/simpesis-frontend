@@ -27,7 +27,8 @@ const KinerjaGuru = () => {
   }, []);
 
   return (
-    <div className="min-h-[100vh] h-full w-full flex flex-col items-center gap-4 justify-around bg-[#f4f4f9] px-4 py-6">
+    <div className="min-h-[100vh] h-full w-full flex flex-col items-center gap-5 justify-around bg-[#f4f4f9] p-10 px-4 py-6">
+      <div className="overflow-x-auto rounded w-full"></div>
       <h2 className="text-xl text-center font-semibold mb-6">Kinerja Guru</h2>
 
       <table className="min-w-full bg-white border border-gray-300 text-left">
