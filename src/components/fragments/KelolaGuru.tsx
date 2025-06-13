@@ -106,15 +106,18 @@ const KelolaGuru = () => {
           onChange={handleChange}
           className="border p-2 rounded"
         />
-        {!isEdit && (
-          <input
-            type="password"
-            name="password"
-            placeholder={isEdit ? "Ubah Password (opsional)" : "Password"}
-            value={form.password}
-            onChange={handleChange}
-            className="border p-2 rounded"
-          />
+        <input
+          type="password"
+          name="password"
+          placeholder={isEdit ? "Ubah Password (opsional)" : "Password"}
+          value={form.password}
+          onChange={handleChange}
+          className="border p-2 rounded"
+        />
+        {isEdit && (
+          <p className="text-sm text-gray-500 italic">
+            Kosongkan jika tidak ingin mengganti password
+          </p>
         )}
         <input
           type="text"
