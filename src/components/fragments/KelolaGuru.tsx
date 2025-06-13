@@ -116,7 +116,7 @@ const KelolaGuru = () => {
           className="border border-[#ccc] rounded focus:border-blue-800 focus:outline-none p-1 w-full resize-none flex items-start justify-start h-10"
         />
         {isEdit && (
-          <p className="text-sm text-gray-500 italic p-1">
+          <p className="text-sm text-gray-500 italic mt-1">
             Kosongkan jika tidak ingin mengganti password
           </p>
         )}
