@@ -17,6 +17,8 @@ const Login = () => {
       const res = await api.post("/auth/login", formDataObj);
 
       localStorage.setItem("token", res.data.accessToken);
+      localStorage.setItem("role", res.data.role); // ⬅️ tambahkan baris ini
+      localStorage.setItem("username", res.data.username); // opsional
       login();
       toast.success("login berhasil");
       navigate("/");

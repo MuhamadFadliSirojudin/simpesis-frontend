@@ -1,8 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../libs/auth-context";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth();
+  const [role, setRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    const savedRole = localStorage.getItem("role");
+    setRole(savedRole);
+  }, []);
 
   return (
     <div className="flex w-full justify-between items-center py-12 bg-blue-bg px-30 text-white">
@@ -18,9 +25,17 @@ const Navbar = () => {
         <li>
           <NavLink to={"/contact"}>Contact</NavLink>
         </li>
-        {isAuthenticated && (
+
+        {/* Jika sudah login, tampilkan menu berdasarkan role */}
+        {isAuthenticated && role === "admin" && (
           <li>
             <NavLink to={"/admin"}>Admin Menu</NavLink>
+          </li>
+        )}
+
+        {isAuthenticated && role === "guru" && (
+          <li>
+            <NavLink to={"/guru"}>Daftar Guru</NavLink>
           </li>
         )}
       </ul>
