@@ -175,19 +175,21 @@ const KelolaGuru = () => {
                 <td className="px-4 py-2 border">{guru.nama}</td>
                 <td className="px-4 py-2 border">{guru.username}</td>
                 <td className="px-4 py-2 border">{guru.nuptk}</td>
-                <td className="px-4 py-2 border flex gap-2">
-                  <button
-                    className="text-sm text-white cursor-pointer bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
-                    onClick={() => handleEdit(guru)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
-                    onClick={() => handleDelete(guru.id)}
-                  >
-                    Hapus
-                  </button>
+                <td className="px-4 py-2 border">
+                  <div className="flex justify-center items-center gap-2">
+                    <button
+                      className="text-sm text-white cursor-pointer bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
+                      onClick={() => handleEdit(guru)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                      onClick={() => handleDelete(guru.id)}
+                    >
+                      Hapus
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
