@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TambahGuru from "../fragments/TambahGuru";
+import KelolaGuru from "../fragments/KelolaGuru";
 import KinerjaGuru from "../fragments/KinerjaGuru";
 
 const Menu = () => {
@@ -19,7 +19,7 @@ const Menu = () => {
               : "bg-gray-200 text-black"
           }`}
         >
-          Tambah Guru
+          Kelola Guru
         </button>
         <button
           onClick={() => setActiveTab("kinerja")}
@@ -35,7 +35,7 @@ const Menu = () => {
 
       {/* Konten berdasarkan tab aktif */}
       <div className="mt-6">
-        {activeTab === "tambah" && <TambahGuru />}
+        {activeTab === "tambah" && <KelolaGuru />}
         {activeTab === "kinerja" && <KinerjaGuru />}
       </div>
     </div>
