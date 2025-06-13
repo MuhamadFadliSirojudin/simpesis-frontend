@@ -130,7 +130,7 @@ const KelolaGuru = () => {
         <div className="flex gap-2">
           <button
             type="submit"
-            className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500"
+            className="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-500"
           >
             {isEdit ? "Simpan Perubahan" : "Tambah Guru"}
           </button>
@@ -150,7 +150,7 @@ const KelolaGuru = () => {
       </form>
 
       <div>
-        <h2 className="text-lg font-semibold mb-2">Daftar Guru:</h2>
+        <h2 className="bg-blue-900 text-white hover:bg-blue-800 cursor-pointer">Daftar Guru:</h2>
         <ul className="flex flex-col gap-2">
           {guruList.map((guru) => (
             <li

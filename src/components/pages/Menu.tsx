@@ -15,7 +15,7 @@ const Menu = () => {
           onClick={() => setActiveTab("tambah")}
           className={`py-2 px-4 rounded ${
             activeTab === "tambah"
-              ? "bg-blue-700 text-white"
+              ? "bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
               : "bg-gray-200 text-black"
           }`}
         >
@@ -25,7 +25,7 @@ const Menu = () => {
           onClick={() => setActiveTab("kinerja")}
           className={`py-2 px-4 rounded ${
             activeTab === "kinerja"
-              ? "bg-blue-700 text-white"
+              ? "bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
               : "bg-gray-200 text-black"
           }`}
         >
