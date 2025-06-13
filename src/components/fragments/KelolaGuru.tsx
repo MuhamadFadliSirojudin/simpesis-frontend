@@ -152,36 +152,43 @@ const KelolaGuru = () => {
         </div>
       </form>
 
-      <div>
-        <h2 className="text-xl font-semibold mb-4">Daftar Guru:</h2>
-        <ul className="flex flex-col gap-2">
-          {guruList.map((guru) => (
-            <li
-              key={guru.id}
-              className="border p-2 rounded flex justify-between items-center"
-            >
-              <div>
-                <div className="font-medium">{guru.nama}</div>
-                <div className="text-sm text-gray-600">{guru.username}</div>
-                <div className="text-sm text-gray-500">NUPTK: {guru.nuptk}</div>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  className="text-sm text-white bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
-                  onClick={() => handleEdit(guru)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="text-sm text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
-                  onClick={() => handleDelete(guru.id)}
-                >
-                  Hapus
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+      <div className="overflow-x-auto">
+        <h2 className="text-lg font-semibold mb-4">Daftar Guru:</h2>
+        <table className="min-w-full border border-gray-300 text-left">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="px-4 py-2 border">No</th>
+              <th className="px-4 py-2 border">Nama</th>
+              <th className="px-4 py-2 border">Username</th>
+              <th className="px-4 py-2 border">NUPTK</th>
+              <th className="px-4 py-2 border">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {guruList.map((guru, index) => (
+              <tr key={guru.id} className="hover:bg-gray-50">
+                <td className="px-4 py-2 border">{index + 1}</td>
+                <td className="px-4 py-2 border">{guru.nama}</td>
+                <td className="px-4 py-2 border">{guru.username}</td>
+                <td className="px-4 py-2 border">{guru.nuptk}</td>
+                <td className="px-4 py-2 border flex gap-2">
+                  <button
+                    className="text-sm text-white bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
+                    onClick={() => handleEdit(guru)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="text-sm text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                    onClick={() => handleDelete(guru.id)}
+                  >
+                    Hapus
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
