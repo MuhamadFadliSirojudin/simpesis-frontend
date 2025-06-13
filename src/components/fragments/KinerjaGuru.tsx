@@ -28,25 +28,25 @@ const KinerjaGuru = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Kinerja Guru</h2>
+      <h2 className="text-xl text-center font-semibold mb-4">Kinerja Guru</h2>
 
-      <table className="w-full border">
+      <table className="min-w-full bg-white border border-gray-200 text-left">
         <thead>
-          <tr className="bg-gray-200 text-left">
-            <th className="px-4 py-2">Nama Guru</th>
-            <th className="px-4 py-2">Jumlah Siswa</th>
-            <th className="px-4 py-2">Siswa Dinilai</th>
-            <th className="px-4 py-2">Progress</th>
+          <tr className="bg-blue-900 text-white">
+            <th className="px-4 py-2 text-center">Nama Guru</th>
+            <th className="px-4 py-2 text-center">Jumlah Siswa</th>
+            <th className="px-4 py-2 text-center">Siswa Dinilai</th>
+            <th className="px-4 py-2 text-center">Progress</th>
           </tr>
         </thead>
         <tbody>
           {data.map((guru) => (
-            <tr key={guru.id} className="border-t">
+            <tr key={guru.id} className="hover:bg-blue-50 p-4 transition">
               <td className="px-4 py-2">{guru.nama}</td>
               <td className="px-4 py-2">{guru.totalSiswa}</td>
               <td className="px-4 py-2">{guru.siswaDinilai}</td>
               <td className="px-4 py-2">
-                <div className="w-full bg-gray-200 h-4 rounded">
+                <div className="w-full bg-red-200 h-4 rounded">
                   <div
                     className="bg-green-600 h-4 rounded text-white text-xs text-center"
                     style={{ width: `${guru.persentase}%` }}
