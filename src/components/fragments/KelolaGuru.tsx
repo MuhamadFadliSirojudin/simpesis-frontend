@@ -153,7 +153,11 @@ const KelolaGuru = () => {
       </form>
 
       <div className="overflow-x-auto rounded w-full">
-        <h2 className="text-lg font-semibold mb-4">Daftar Guru:</h2>
+        {guruList?.length === 0 ? (
+          <div className="text-center text-gray-500 py-4">
+              Belum ada guru ditambahkan.
+          </div>
+        ) : (
         <table className="min-w-full bg-white border border-gray-200 text-left">
           <thead>
             <tr className="bg-blue-900 text-white">
@@ -189,7 +193,8 @@ const KelolaGuru = () => {
             ))}
           </tbody>
         </table>
-      </div>
+        )}
+        </div>
     </div>
   );
 };
