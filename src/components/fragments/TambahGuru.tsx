@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../../libs/axios";
 import toast from "react-hot-toast";
 
-const TambahGuru = ({ onSuccess }: { onSuccess: () => void }) => {
+const TambahGuru = ({ onSuccess }: { onSuccess?: () => void }) => {
   const [form, setForm] = useState({
     nama: "",
     username: "",
@@ -19,7 +19,7 @@ const TambahGuru = ({ onSuccess }: { onSuccess: () => void }) => {
     try {
       await api.post("/guru", { ...form, role: "guru" });
       toast.success("Guru berhasil ditambahkan");
-      onSuccess();
+      onSuccess?.();
       setForm({ nama: "", username: "", password: "", nuptk: "" });
     } catch (err) {
       toast.error("Gagal menambahkan guru");
