@@ -131,7 +131,7 @@ const KelolaGuru = () => {
         <div className="flex gap-2">
           <button
             type="submit"
-            className="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-500"
+            className="bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
           >
             {isEdit ? "Simpan Perubahan" : "Tambah Guru"}
           </button>
@@ -142,7 +142,7 @@ const KelolaGuru = () => {
                 setIsEdit(false);
                 setForm({ id: null, nama: "", username: "", password: "", nuptk: "" });
               }}
-              className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500"
+              className="bg-gray-400 text-white hover:bg-gray-500 cursor-pointer"
             >
               Batal
             </button>
