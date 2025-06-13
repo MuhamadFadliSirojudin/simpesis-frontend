@@ -15,7 +15,8 @@ const Register = () => {
       !formDataObj.nama ||
       !formDataObj.username ||
       !formDataObj.password ||
-      !formDataObj.confirmPassword
+      !formDataObj.confirmPassword ||
+      !formDataObj.nuptk
     ) {
       toast.error("Form tidak boleh kosong!");
       return;
@@ -75,6 +76,13 @@ const Register = () => {
               type="password"
               id="confirm-password"
               name="confirmPassword"
+            />
+            <label htmlFor="nuptk">NUPTK</label>
+            <input
+              className="bg-white text-black rounded-lg h-8 px-2"
+              type="text"
+              id="nuptk"
+              name="nuptk"
             />
           </div>
           <Button className="bg-indigo-600">Register</Button>
