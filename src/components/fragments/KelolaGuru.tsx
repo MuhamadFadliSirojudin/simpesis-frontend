@@ -131,7 +131,7 @@ const KelolaGuru = () => {
         <div className="flex gap-2">
           <button
             type="submit"
-            className="bg-blue-900 text-white py-2 px-full rounded hover:bg-blue-500"
+            className="bg-blue-900 text-white focus:outline-none p-1 w-full resize-none rounded hover:bg-blue-500"
           >
             {isEdit ? "Simpan Perubahan" : "Tambah Guru"}
           </button>
