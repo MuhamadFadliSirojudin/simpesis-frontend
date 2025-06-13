@@ -85,9 +85,10 @@ const KelolaGuru = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-8">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold">
+    <div className="min-h-[100vh] h-full w-full flex flex-col items-center gap-5 justify-around bg-[#f4f4f9] p-10">
+      <form onSubmit={handleSubmit} 
+      className="flex flex-col shadow-form-container w-[50%]  bg-white p-[2rem] rounded-lg text-[#333] gap-7">
+        <h2 className="text-center font-semibold text-black text-2xl">
           {isEdit ? "Edit Guru" : "Tambah Guru"}
         </h2>
         <input
