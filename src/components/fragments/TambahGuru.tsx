@@ -25,8 +25,9 @@ const TambahGuru = () => {
 
   const fetchGuru = async () => {
     try {
-      const { data } = await api.get("/guru");
-      setGuruList(data.data);
+      const res = await api.get("/guru");
+      const list = Array.isArray(res.data) ? res.data : res.data.data || [];
+      setGuruList(list);
     } catch (err) {
       toast.error("Gagal mengambil daftar guru");
     }
