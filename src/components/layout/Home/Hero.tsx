@@ -19,7 +19,7 @@ const Hero = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      login("admin");
+      login();
       setToken(token);
     }
   }, []);
