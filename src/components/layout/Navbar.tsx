@@ -29,13 +29,13 @@ const Navbar = () => {
         {/* Jika sudah login, tampilkan menu berdasarkan role */}
         {isAuthenticated && role === "admin" && (
           <li>
-            <NavLink to={"/admin"}>Menu</NavLink>
+            <NavLink to={"/menu"}>Menu</NavLink>
           </li>
         )}
 
         {isAuthenticated && role === "guru" && (
           <li>
-            <NavLink to={"/guru"}>Daftar Guru</NavLink>
+            <NavLink to={"/daftar-guru"}>Daftar Guru</NavLink>
           </li>
         )}
       </ul>

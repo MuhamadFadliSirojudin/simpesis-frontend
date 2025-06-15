@@ -23,11 +23,14 @@ const Login = () => {
       toast.success("login berhasil");
       
       // Redirect sesuai role
-      if (res.data.role === "admin") {
+      const role = res.data.role;
+
+      if (role === "admin") {
         navigate("/menu");
-      } else {
-        navigate("/daftar guru");
+      } else if (role === "guru") {
+        navigate("/daftar-guru");
       }
+
     } catch (error: any) {
       console.log(error);
       toast.error("Error login");
