@@ -1,15 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../libs/auth-context";
-import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth();
-  const [role, setRole] = useState<string | null>(null);
-
-  useEffect(() => {
-    const savedRole = localStorage.getItem("role");
-    setRole(savedRole);
-  }, []);
+  const role = localStorage.getItem("role"); // Ambil langsung agar selalu up to date
 
   return (
     <div className="flex w-full justify-between items-center py-12 bg-blue-bg px-30 text-white">
@@ -26,7 +20,6 @@ const Navbar = () => {
           <NavLink to={"/contact"}>Contact</NavLink>
         </li>
 
-        {/* Jika sudah login, tampilkan menu berdasarkan role */}
         {isAuthenticated && role === "admin" && (
           <li>
             <NavLink to={"/menu"}>Menu</NavLink>
