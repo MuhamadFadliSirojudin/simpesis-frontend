@@ -12,6 +12,7 @@ import Register from "./components/pages/Register.tsx";
 import GetReport from "./components/pages/GetReport.tsx";
 import SiswaInput from "./components/pages/SiswaInput.tsx";
 import Menu from "./components/pages/Menu.tsx";
+import DaftarGuru from "./components/pages/DaftarGuru";
 import Contact from "./components/pages/Contact.tsx";
 import { AuthProvider } from "./libs/auth-context.tsx";
 
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/laporan" element={<GetReport />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/daftar-guru" element={<DaftarGuru />} />
           </Route>
         </Routes>
       </AuthProvider>
