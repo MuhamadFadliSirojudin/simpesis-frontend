@@ -1,6 +1,7 @@
 import { useState } from "react";
 import KelolaGuru from "../fragments/KelolaGuru";
 import KinerjaGuru from "../fragments/KinerjaGuru";
+import KelolaAdmin from "../fragments/KelolaAdmin";
 
 const Menu = () => {
   const [activeTab, setActiveTab] = useState<"tambah" | "kinerja" | null>("tambah");
@@ -31,12 +32,23 @@ const Menu = () => {
         >
           Kinerja Guru
         </button>
+        <button
+          onClick={() => setActiveTab("tambah")}
+          className={`py-2 px-4 rounded ${
+            activeTab === "tambah"
+              ? "bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
+              : "bg-gray-200 text-black"
+          }`}
+        >
+          Kelola Admin
+        </button>
       </div>
 
       {/* Konten berdasarkan tab aktif */}
       <div className="mt-6">
         {activeTab === "tambah" && <KelolaGuru />}
         {activeTab === "kinerja" && <KinerjaGuru />}
+        {activeTab === "tambah" && <KelolaAdmin />}
       </div>
     </div>
   );
