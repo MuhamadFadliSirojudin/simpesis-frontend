@@ -19,7 +19,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.accessToken);
       localStorage.setItem("role", res.data.role); // ⬅️ tambahkan baris ini
       localStorage.setItem("username", res.data.username); // opsional
-      login();
+      login(res.data.role);
       toast.success("login berhasil");
       
       // Redirect sesuai role
