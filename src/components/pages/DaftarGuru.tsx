@@ -43,7 +43,7 @@ const DaftarGuru = () => {
 
   return (
     <div className="min-h-[100vh] h-full w-full flex flex-col items-center gap-5 justify-start bg-[#f4f4f9] p-10">
-      <h2 className="text-xl text-center font-semibold mb-2">Daftar Guru</h2>
+      <h2 className="text-2xl text-center font-semibold mb-6">Daftar Guru</h2>
 
       <input
         type="text"
@@ -78,7 +78,7 @@ const DaftarGuru = () => {
                 <td className="px-4 py-2 border text-center">
                   <button
                     onClick={() => handleSelectGuru(guru.id)}
-                    className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-500"
+                    className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 cursor-pointer"
                   >
                     Lihat Siswa
                   </button>
