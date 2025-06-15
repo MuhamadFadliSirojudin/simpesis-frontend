@@ -30,7 +30,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/siswa" element={<SiswaInput />} />
             <Route path="/laporan" element={<GetReport />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<Menu />} />
+            <Route path="/menu" element={<Menu />} />
           </Route>
         </Routes>
       </AuthProvider>
