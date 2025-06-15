@@ -20,20 +20,11 @@ const Login = () => {
       localStorage.setItem("role", res.data.role); // ⬅️ tambahkan baris ini
       localStorage.setItem("username", res.data.username); // opsional
       login();
-      
-      // Redirect sesuai role
-      const role = res.data.role;
-
-      if (role === "admin") {
-        navigate("/menu");
-      } else if (role === "guru") {
-        navigate("/daftar-guru");
-      }
-
       toast.success("login berhasil");
-    } catch (error: any) {
+      navigate("/");
+    } catch (error) {
       console.log(error);
-      toast.error("Error login");
+      toast.error("error login");
     }
   };
   return (
