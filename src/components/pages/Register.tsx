@@ -35,7 +35,7 @@ const Register = () => {
         navigate("/login");
       }
     } catch (error: any) {
-      if (error.status == 409) {
+      if (error.response?.status == 409) {
         toast.error("akun dengan username sama sudah terdaftar");
         return;
       }

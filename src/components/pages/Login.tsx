@@ -20,7 +20,6 @@ const Login = () => {
       localStorage.setItem("role", res.data.role); // ⬅️ tambahkan baris ini
       localStorage.setItem("username", res.data.username); // opsional
       login();
-      toast.success("login berhasil");
       
       // Redirect sesuai role
       const role = res.data.role;
@@ -31,6 +30,7 @@ const Login = () => {
         navigate("/daftar-guru");
       }
 
+      toast.success("login berhasil");
     } catch (error: any) {
       console.log(error);
       toast.error("Error login");
