@@ -21,10 +21,16 @@ const Login = () => {
       localStorage.setItem("username", res.data.username); // opsional
       login();
       toast.success("login berhasil");
-      navigate("/");
-    } catch (error) {
+      
+      // Redirect sesuai role
+      if (res.data.role === "admin") {
+        navigate("/menu");
+      } else {
+        navigate("/daftar guru");
+      }
+    } catch (error: any) {
       console.log(error);
-      toast.error("error login");
+      toast.error("Error login");
     }
   };
   return (
