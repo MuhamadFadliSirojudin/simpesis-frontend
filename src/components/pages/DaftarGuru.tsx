@@ -32,12 +32,12 @@ const DaftarGuru = () => {
   return (
     <div className="min-h-screen bg-[#f4f4f9] px-4 py-10">
       <h2 className="text-2xl font-semibold text-center mb-6">Daftar Guru</h2>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-5">
         {guruList.map((guru) => (
           <li
             key={guru.id}
             onClick={() => handleSelectGuru(guru.id)}
-            className="cursor-pointer p-4 border rounded hover:bg-blue-100"
+            className="cursor-pointer p-4 border rounded hover:bg-blue-50"
           >
             {guru.nama}
           </li>
