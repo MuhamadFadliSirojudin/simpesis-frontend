@@ -4,7 +4,7 @@ import KinerjaGuru from "../fragments/KinerjaGuru";
 import KelolaAdmin from "../fragments/KelolaAdmin";
 
 const Menu = () => {
-  const [activeTab, setActiveTab] = useState<"tambah" | "kinerja" | null>("tambah");
+  const [activeTab, setActiveTab] = useState<"tambah" | "kinerja" | "admin">("tambah");
 
   return (
     <div className="p-10">
@@ -33,9 +33,9 @@ const Menu = () => {
           Kinerja Guru
         </button>
         <button
-          onClick={() => setActiveTab("tambah")}
+          onClick={() => setActiveTab("admin")}
           className={`py-2 px-4 rounded ${
-            activeTab === "tambah"
+            activeTab === "admin"
               ? "bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
               : "bg-gray-200 text-black"
           }`}
@@ -48,7 +48,7 @@ const Menu = () => {
       <div className="mt-6">
         {activeTab === "tambah" && <KelolaGuru />}
         {activeTab === "kinerja" && <KinerjaGuru />}
-        {activeTab === "tambah" && <KelolaAdmin />}
+        {activeTab === "admin" && <KelolaAdmin />}
       </div>
     </div>
   );
