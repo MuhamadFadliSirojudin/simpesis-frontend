@@ -58,7 +58,6 @@ return (
 
         {/* Konten Tab */}
         <div className="bg-white p-6 rounded shadow">
-            {activeTab === "harian" && <div>📘 Form Input Penilaian Harian</div>}
             {activeTab === "mingguan" && <div>📗 Rekap dari Penilaian Harian</div>}
             {activeTab === "bulanan" && <div>📙 Rekap dari Penilaian Mingguan</div>}
             {activeTab === "semester" && <div>📕 Rekap dari Penilaian Bulanan</div>}
