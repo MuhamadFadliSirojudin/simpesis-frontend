@@ -49,7 +49,7 @@ const SiswaInput = () => {
     }
 
     try {
-      const res = await api.post("/siswa", { ...formData, guruId});
+      const res = await api.post("/siswa", { ...formData, guruId: Number(guruId)});
       if (res.status) {
         fetchSiswa();
         toast.success("Berhasil menambahkan siswa");
