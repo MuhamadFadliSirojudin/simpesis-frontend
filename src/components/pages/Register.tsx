@@ -46,7 +46,7 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center bg-blue-bg px-30 py-10 text-white">
       <div className="bg-[#535252] flex flex-col w-[70%] md:w-[35%] p-10 rounded-xl gap-10">
-        <h1 className="text-center text-4xl">Login Administrator</h1>
+        <h1 className="text-center text-4xl">Register Guru</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-10">
           <div className="flex flex-col gap-5">
             <label htmlFor="nama">Nama Lengkap</label>
@@ -88,7 +88,7 @@ const Register = () => {
           <Button className="bg-indigo-600">Register</Button>
         </form>
         <p className="text-center">
-          Sudah punya akun?{" "}
+          Sudah punya akun guru?{" "}
           <NavLink to={"/login"} className={"underline"}>
             Login
           </NavLink>
