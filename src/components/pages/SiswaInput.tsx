@@ -8,10 +8,13 @@ import { useParams } from "react-router-dom";
 
 const SiswaInput = () => {
   const { guruId } = useParams();
+  
   useEffect(() => {
-    console.log("Guru ID:", guruId); // Cek apakah terisi
-    // lalu fetch data siswa berdasarkan guruId
+    if (guruId) {
+      localStorage.setItem("guruId", guruId);
+    }
   }, [guruId]);
+
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
   const [formData, setFormData] = useState({
     nama: "",
