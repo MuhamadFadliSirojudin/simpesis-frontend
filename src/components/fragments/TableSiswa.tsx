@@ -3,7 +3,7 @@ import api from "../../libs/axios";
 import { Siswa } from "../../types";
 
 const TableSiswa = ({ data, fetch }: { data: Siswa[]; fetch: () => void }) => {
-  const guruId = localStorage.getItem("id");
+  const guruId = localStorage.getItem("guruId");
   const deleteSiswa = async (id: number) => {
     try {
       const { data } = await api.delete(`/siswa/${id}?guruId=${guruId}`);
