@@ -26,9 +26,9 @@ const DaftarGuru = () => {
   };
 
   const handleSelectGuru = (id: number) => {
-  localStorage.setItem("guruId", id.toString()); // ✅ simpan ID ke localStorage
-  navigate(`/siswa/${id}`); // arahkan ke halaman siswa
-};
+    localStorage.setItem("guruId", id.toString()); // ✅ simpan ID ke localStorage
+    navigate(`/siswa/${id}`); // arahkan ke halaman siswa
+  };
 
 
   const handleSearch = (value: string) => {
