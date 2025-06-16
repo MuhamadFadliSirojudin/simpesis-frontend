@@ -18,7 +18,12 @@ const SiswaInput = () => {
   };
 
   const fetchSiswa = async () => {
-    const { data } = await api.get("/siswa");
+    const guruId = localStorage.getItem("guruId");
+    if (!guruId) {
+      toast.error("Gagal mengambil data siswa: ID guru tidak ditemukan");
+      return;
+    }
+    const { data } = await api.get(`/siswa?guruId=${guruId}`);
 
     setListSiswa(data.data);
   };
@@ -31,8 +36,14 @@ const SiswaInput = () => {
       toast.error("Semua Form Wajib diisi!");
       return;
     }
+    const guruId = localStorage.getItem("guruId");
+    if (!guruId) {
+      toast.error("Gagal menambahkan siswa: ID guru tidak ditemukan");
+      return;
+    }
+
     try {
-      const res = await api.post("/siswa", formData);
+      const res = await api.post("/siswa", { ...formData, guruId});
       if (res.status) {
         fetchSiswa();
         toast.success("Berhasil menambahkan siswa");

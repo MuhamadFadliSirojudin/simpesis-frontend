@@ -19,6 +19,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.accessToken);
       localStorage.setItem("role", res.data.role); // ⬅️ tambahkan baris ini
       localStorage.setItem("username", res.data.username); // opsional
+      localStorage.setItem("guruId", res.data.id); // ⬅️ ini id guru
       login();
       toast.success("login berhasil");
       navigate("/");
