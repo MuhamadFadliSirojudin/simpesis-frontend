@@ -11,13 +11,13 @@ const PenilaianSiswa = () => {
 
     const fetchNama = async () => {
         try {
-        const res = await api.get('/siswa/${siswaId}');
+            const res = await api.get(`/siswa/${siswaId}`);
             setSiswaNama(res.data.data.nama);
-        } 
-        catch (err) {
-        console.error("Gagal mengambil nama siswa:", err);
+        } catch (err) {
+            console.error("Gagal mengambil nama siswa:", err);
         }
-        };
+    };
+
 
         fetchNama();
         }, [siswaId]);
