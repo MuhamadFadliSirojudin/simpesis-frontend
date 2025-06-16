@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PenilaianHarian from "../pages/PenilaianHarian";
 import api from "../../libs/axios"; // pastikan import ini sudah ada
 
 const PenilaianSiswa = () => {
@@ -62,6 +63,9 @@ return (
             {activeTab === "bulanan" && <div>📙 Rekap dari Penilaian Mingguan</div>}
             {activeTab === "semester" && <div>📕 Rekap dari Penilaian Bulanan</div>}
         </div>
+
+        {activeTab === "harian" && <PenilaianHarian />}
+
         </div>
 );
 };
