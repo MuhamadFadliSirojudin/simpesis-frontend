@@ -14,7 +14,7 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
       </h1>
     ) : (
       <div ref={ref} className="w-full flex flex-col gap-5 py-10 px-10">
-        <h1 className="text-center text-2xl font-bold">Nilai Semester Siswa</h1>
+        <h1 className="text-center text-2xl font-bold">Laporan Nilai Siswa</h1>
         <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
           <tbody className="border border-gray-400">
             <tr className="h-16 border-b border-gray-400">
