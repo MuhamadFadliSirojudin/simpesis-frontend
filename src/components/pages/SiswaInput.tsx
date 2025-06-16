@@ -49,6 +49,7 @@ const SiswaInput = () => {
     }
 
     try {
+      console.log("Guru ID:", guruId);
       const res = await api.post("/siswa", { ...formData, guruId: Number(guruId)});
       if (res.status) {
         fetchSiswa();
