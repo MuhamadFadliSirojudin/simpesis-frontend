@@ -33,6 +33,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/contact" element={<Contact />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/daftar-guru" element={<DaftarGuru />} />
+            <Route path="/daftar-siswa/:guruId" element={<SiswaInput />} />
           </Route>
         </Routes>
       </AuthProvider>
