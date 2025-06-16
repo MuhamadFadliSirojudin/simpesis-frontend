@@ -11,6 +11,7 @@ import NilaiIInput from "./components/pages/NilaiIInput.tsx";
 import Register from "./components/pages/Register.tsx";
 import GetReport from "./components/pages/GetReport.tsx";
 import SiswaInput from "./components/pages/SiswaInput.tsx";
+import PenilaianSiswa from "./components/pages/PenilaianSiswa";
 import Menu from "./components/pages/Menu.tsx";
 import DaftarGuru from "./components/pages/DaftarGuru";
 import Contact from "./components/pages/Contact.tsx";
@@ -34,6 +35,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/menu" element={<Menu />} />
             <Route path="/daftar-guru" element={<DaftarGuru />} />
             <Route path="/siswa/:guruId" element={<SiswaInput />} />
+            <Route path="/penilaian/:siswaId" element={<PenilaianSiswa />} />
           </Route>
         </Routes>
       </AuthProvider>
