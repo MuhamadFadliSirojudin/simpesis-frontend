@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import api from "../../libs/axios"; // pastikan import ini sudah ada
 
 const PenilaianSiswa = () => {
     const { siswaId } = useParams();
     const [activeTab, setActiveTab] = useState<"harian" | "mingguan" | "bulanan" | "semester">("harian");
+    const [siswaNama, setSiswaNama] = useState("");
+        useEffect(() => {
+        if (!siswaId) return;
+
+    const fetchNama = async () => {
+        try {
+        const res = await api.get('/siswa/${siswaId}');
+            setSiswaNama(res.data.data.nama);
+        } 
+        catch (err) {
+        console.error("Gagal mengambil nama siswa:", err);
+        }
+        };
+
+        fetchNama();
+        }, [siswaId]);
 
 return (
     <div className="p-6 bg-[#f4f4f9] min-h-screen">
         <h2 className="text-2xl font-semibold mb-6 text-center">Penilaian Siswa</h2>
-        <h2 className="text-xl text-center">Penilaian Siswa ID: {siswaId}</h2>
+        <h2 className="text-2xl font-semibold mb-2 text-center">{siswaNama}</h2>
 
         {/* Tab Navigasi */}
         <div className="flex gap-4 justify-center mb-8">
