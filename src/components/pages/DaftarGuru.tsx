@@ -26,8 +26,10 @@ const DaftarGuru = () => {
   };
 
   const handleSelectGuru = (id: number) => {
-    navigate(`/siswa/${id}`); // arahkan ke halaman siswa berdasarkan guru
-  };
+  localStorage.setItem("guruId", id.toString()); // ✅ simpan ID ke localStorage
+  navigate(`/siswa/${id}`); // arahkan ke halaman siswa
+};
+
 
   const handleSearch = (value: string) => {
     setSearch(value);
