@@ -58,7 +58,7 @@ const TableSiswa = ({ data, fetch }: { data: Siswa[]; fetch: () => void }) => {
                       Hapus
                     </button>
                     <button
-                      className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 cursor-pointer"
+                      className="text-sm text-white cursor-pointer bg-green-600 px-3 py-1 rounded hover:bg-green-700"
                       onClick={() => navigate(`/penilaian/${siswa.id}`)}
                     >
                       Lihat Penilaian
