@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../libs/axios";
 import { useParams } from "react-router-dom";
+import GetReport from "../pages/GetReport";
 
 interface Nilai {
     id: number;
@@ -73,6 +74,7 @@ const PenilaianMingguan = () => {
                     </table>
                 </div>
             ))}
+            <GetReport />
         </div>
     );
 };
