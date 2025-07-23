@@ -167,7 +167,7 @@ const GetReport: React.FC<GetReportProps> = ({ siswaId, kategori }) => {
           <Button className="h-12" onClick={handleClickPrint}>
             Print Laporan
           </Button>
-          {!siswaId && kategori === "harian" && (
+          {siswaId && kategori === "harian" && (
             <Button
               variant={"custom"}
               className="bg-red-600 text-white hover:bg-red-500 active:bg-red-700 h-12"
