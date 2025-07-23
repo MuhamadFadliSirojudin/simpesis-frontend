@@ -2,11 +2,9 @@ import { useState } from "react";
 import ModulInput from "../pages/ModulInput";
 import PembelajaranInput from "../pages/PembelajaranInput";
 import NilaiIInput from "./NilaiIInput";
-import GetReport from "./GetReport";
-import { useParams } from "react-router-dom";
+import GetReport from "./CetakLaporan";
 
 const PenilaianHarian = () => {
-  const { siswaId } = useParams();
   const [subTab, setSubTab] = useState<"modul" | "pembelajaran" | "nilai" |"laporan">("modul");
 
   return (
@@ -42,8 +40,7 @@ const PenilaianHarian = () => {
         {subTab === "modul" && <ModulInput />}
         {subTab === "pembelajaran" && <PembelajaranInput />}
         {subTab === "nilai" && <NilaiIInput />}
-        {subTab === "laporan" && <GetReport siswaId={siswaId as string} kategori="harian" />
-}
+        {subTab === "laporan" && <GetReport />}
       </div>
     </div>
   );
