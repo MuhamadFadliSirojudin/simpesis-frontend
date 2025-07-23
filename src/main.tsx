@@ -9,7 +9,7 @@ import ModulInput from "./components/pages/ModulInput.tsx";
 import PembelajaranInput from "./components/pages/PembelajaranInput.tsx";
 import NilaiIInput from "./components/pages/NilaiIInput.tsx";
 import Register from "./components/pages/Register.tsx";
-import GetReport from "./components/pages/GetReport.tsx";
+import GetReport from "./components/pages/CetakLaporan.tsx";
 import SiswaInput from "./components/pages/SiswaInput.tsx";
 import PenilaianSiswa from "./components/pages/PenilaianSiswa";
 import Menu from "./components/pages/Menu.tsx";

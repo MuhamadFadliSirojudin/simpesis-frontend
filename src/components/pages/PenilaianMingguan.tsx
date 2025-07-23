@@ -1,82 +1,87 @@
 import { useEffect, useState } from "react";
-import api from "../../libs/axios";
 import { useParams } from "react-router-dom";
-import GetReport from "../pages/GetReport";
+import api from "../../libs/axios";
+import GetReport from "./GetReport";
 
 interface Nilai {
-    id: number;
-    tanggal: string;
-    nilai: number;
-    minggu: number;
-    pembelajaran: {
-        nama: string;
-    };
+  id: number;
+  nilai: number;
+  siswa: { nama: string };
+  modul: { nama: string };
+  createdAt: string;
 }
 
 const PenilaianMingguan = () => {
-    const { siswaId } = useParams();
-    const [rekap, setRekap] = useState<Record<number, { jumlah: number; total: number; nama: string }[]>>({});
+  const { siswaId } = useParams();
+  const [rekap, setRekap] = useState<Record<string, { total: number; jumlah: number }>>({});
+  const [namaSiswa, setNamaSiswa] = useState("");
 
-    useEffect(() => {
-        const fetchNilai = async () => {
-            try {
-                const { data } = await api.get('/nilai?siswaId=${siswaId}');
-                const grouped: Record<number, { jumlah: number; total: number; nama: string }[]> = {};
+  useEffect(() => {
+    const fetchNilai = async () => {
+      try {
+        const { data } = await api.get(`/nilai?siswaId=${siswaId}`);
+        const grouped: Record<string, { total: number; jumlah: number }> = {};
 
-                data.data.forEach((n: Nilai) => {
-                    const minggu = getWeek(new Date(n.tanggal));
-                    if (!grouped[minggu]) grouped[minggu] = [];
-                    const existing = grouped[minggu].find((item) => item.nama === n.pembelajaran.nama);
-                    if (existing) {
-                        existing.total += n.nilai;
-                        existing.jumlah += 1;
-                    } else {
-                        grouped[minggu].push({ nama: n.pembelajaran.nama, jumlah: 1, total: n.nilai });
-                    }
-                });
+        data?.forEach((n: Nilai) => {
+          const modul = n.modul?.nama || "Tidak diketahui";
+          if (!grouped[modul]) grouped[modul] = { total: 0, jumlah: 0 };
+          grouped[modul].total += n.nilai;
+          grouped[modul].jumlah += 1;
+        });
 
-                setRekap(grouped);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        setRekap(grouped);
 
-        fetchNilai();
-    }, [siswaId]);
-
-    const getWeek = (date: Date): number => {
-        const firstJan = new Date(date.getFullYear(), 0, 1);
-        const pastDaysOfYear = (date.getTime() - firstJan.getTime()) / 86400000;
-        return Math.ceil((pastDaysOfYear + firstJan.getDay() + 1) / 7);
+        if (data?.length > 0) {
+          setNamaSiswa(data[0]?.siswa?.nama);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil data nilai:", err);
+      }
     };
 
-    return (
-        <div className="p-6 bg-white shadow rounded">
-            <h2 className="text-lg font-bold mb-4">Rekap Nilai Mingguan</h2>
-            {Object.keys(rekap).map((minggu) => (
-                <div key={minggu} className="mb-4">
-                    <h3 className="text-md font-semibold mb-2">Minggu ke-{minggu}</h3>
-                    <table className="w-full border">
-                        <thead>
-                            <tr className="bg-blue-100">
-                                <th className="border px-4 py-2">Pembelajaran</th>
-                                <th className="border px-4 py-2">Rata-rata Nilai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {rekap[parseInt(minggu)].map((item, idx) => (
-                                <tr key={idx}>
-                                    <td className="border px-4 py-2">{item.nama}</td>
-                                    <td className="border px-4 py-2">{(item.total / item.jumlah).toFixed(2)}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+    fetchNilai();
+  }, [siswaId]);
+
+  return (
+    <div className="p-6 bg-white rounded shadow">
+      <h2 className="text-xl font-bold mb-2">Rekap Penilaian Mingguan</h2>
+      <p className="text-sm mb-4 text-gray-700">Siswa: <strong>{namaSiswa}</strong></p>
+
+      {Object.keys(rekap).length === 0 && (
+        <p className="text-sm text-gray-500 mb-4">Belum ada data penilaian untuk siswa ini.</p>
+      )}
+
+      {Object.keys(rekap).length > 0 && (
+        <table className="w-full border text-sm">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border p-2 text-left">Modul</th>
+              <th className="border p-2 text-center">Jumlah Penilaian</th>
+              <th className="border p-2 text-center">Total Nilai</th>
+              <th className="border p-2 text-center">Rata-rata</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(rekap).map(([modul, info], i) => (
+              <tr key={i}>
+                <td className="border px-2 py-1">{modul}</td>
+                <td className="border px-2 py-1 text-center">{info.jumlah}</td>
+                <td className="border px-2 py-1 text-center">{info.total}</td>
+                <td className="border px-2 py-1 text-center">
+                  {(info.total / info.jumlah).toFixed(2)}
+                </td>
+              </tr>
             ))}
-            <GetReport />
-        </div>
-    );
+          </tbody>
+        </table>
+      )}
+
+      <div className="mt-6">
+        <h3 className="text-md font-semibold mb-2">Cetak Laporan Mingguan</h3>
+        <GetReport siswaId={siswaId as string} kategori="mingguan" />
+      </div>
+    </div>
+  );
 };
 
 export default PenilaianMingguan;
