@@ -125,7 +125,6 @@ const GetReport: React.FC<GetReportProps> = ({ siswaId, kategori }) => {
 
   return (
     <div className="px-30 py-10">
-      {!siswaId && !kategori && (
         <div className="flex flex-col justify-between shadow-form-container w-full bg-white p-[2rem] rounded-lg text-[#333] gap-7">
           <div className="flex gap-10 justify-end items-end">
             <div className="flex flex-col gap-2 w-full">
@@ -158,7 +157,6 @@ const GetReport: React.FC<GetReportProps> = ({ siswaId, kategori }) => {
             Ambil laporan nilai
           </Button>
         </div>
-      )}
 
       <TabelReport data={reportData} ref={componentRef} />
 
