@@ -103,7 +103,7 @@ const GetReport = () => {
   }, [selectedModul]);
 
   return (
-    <div className="px-30 py-10">
+    <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-8">
       <div className="flex flex-col justify-between shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7">
         <div className="flex gap-10 justify-end items-end">
           <div className="flex flex-col gap-2 w-full">
