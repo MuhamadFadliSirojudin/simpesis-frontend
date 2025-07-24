@@ -47,7 +47,9 @@ const TabRekapMingguan = ({ onLihatRekap, onCetakLaporan }: {
                 <td className="border px-4 py-2 text-center">{index + 1}</td>
                 <td className="border px-4 py-2">{siswa.nama}</td>
                 <td className="border px-4 py-2 text-center">{siswa.jumlahNilai}</td>
-                <td className="border px-4 py-2 text-center">{siswa.rataRata.toFixed(1)}</td>
+                <td className="border px-4 py-2 text-center">
+                {siswa.rataRata !== undefined ? siswa.rataRata.toFixed(1) : '-'}
+                </td>
                 <td className="border px-4 py-2 text-center space-x-2">
                   <Button
                     className="text-blue-600 hover:underline"
