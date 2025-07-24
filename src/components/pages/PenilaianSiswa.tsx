@@ -64,9 +64,6 @@ const PenilaianSiswa = () => {
                 {activeTab === "bulanan" && <div>📙 Rekap dari Penilaian Mingguan</div>}
                 {activeTab === "semester" && <div>📕 Rekap dari Penilaian Bulanan</div>}
             </div>
-
-            {activeTab === "harian" && <PenilaianHarian />}
-
         </div>
     );
 };
