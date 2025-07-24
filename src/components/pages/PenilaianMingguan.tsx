@@ -21,7 +21,7 @@ const PenilaianMingguan = () => {
   };
 
   return (
-    <div className="p-4 rounded shadow">
+    <div className="p-4 bg-white rounded shadow">
       <div className="flex gap-4 mb-6 justify-center">
         <button
           onClick={() => setSubTab("rekap")}
