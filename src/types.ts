@@ -50,3 +50,10 @@ export type BaseDataNilai = {
   id_modul: number;
   id_siswa: number;
 };
+
+export type SiswaRekapMingguan = {
+  id: number;
+  nama: string;
+  jumlahNilai: number;
+  rataRata: number;
+}
