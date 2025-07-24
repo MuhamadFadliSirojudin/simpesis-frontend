@@ -59,6 +59,7 @@ const PenilaianSiswa = () => {
 
             {/* Konten Tab */}
             <div className="bg-white p-6 rounded shadow">
+                {activeTab === "harian" && <PenilaianHarian />}
                 {activeTab === "mingguan" && <PenilaianMingguan />}
                 {activeTab === "bulanan" && <div>📙 Rekap dari Penilaian Mingguan</div>}
                 {activeTab === "semester" && <div>📕 Rekap dari Penilaian Bulanan</div>}
