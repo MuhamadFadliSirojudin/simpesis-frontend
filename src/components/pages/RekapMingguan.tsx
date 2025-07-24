@@ -17,15 +17,22 @@ const TabRekapMingguan = ({ onLihatRekap, onCetakLaporan }: {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+        try {
         const { data } = await api.get("/rekap/mingguan");
-        setDataSiswa(data);
-      } catch (err) {
+        const mapped = data.map((item: any) => ({
+            id: item.id_siswa,
+            nama: item.nama_siswa,
+            jumlahNilai: item.jumlah_nilai,
+            rataRata: item.rata_rata,
+        }));
+        setDataSiswa(mapped);
+        } catch (err) {
         console.error("Gagal mengambil data rekap mingguan:", err);
-      }
+        }
     };
     fetchData();
-  }, []);
+    }, []);
+
 
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
