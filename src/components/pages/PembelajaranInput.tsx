@@ -63,7 +63,7 @@ const PembelajaranInput = () => {
   }, [selected]);
 
   return (
-    <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-12">
+    <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-8">
       <form
         onSubmit={addPembelajaran}
         className="flex flex-col shadow-form-container w-[50%]  bg-white p-[2rem] rounded-lg text-[#333] gap-7"

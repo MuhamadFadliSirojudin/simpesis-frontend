@@ -28,7 +28,7 @@ const TabRekapMingguan = ({ onLihatRekap, onCetakLaporan }: {
   }, []);
 
   return (
-    <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-12">
+    <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
       <h2 className="text-xl text-center font-semibold mb-4">Rekap Penilaian Mingguan</h2>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border bg-white">
