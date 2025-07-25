@@ -57,19 +57,24 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
-      {(
-        <div className="mb-4 w-1/2">
-          <label className="font-semibold block mb-2">Pilih Siswa</label>
-          <DropdownSiswa
-            value={siswaId || 0}
-            onChange={(val) => setSiswaId(val)}
-            options={listSiswa}
-          />
-        </div>
+      <div className="mb-4 w-1/2">
+        <label className="font-semibold block mb-2">Pilih Siswa</label>
+        <DropdownSiswa
+          value={siswaId || 0}
+          onChange={(val) => setSiswaId(val)}
+          options={listSiswa}
+        />
+      </div>
+
+      {siswaId === null && (
+        <p className="text-center py-4">Silakan pilih siswa untuk melihat detail rekap.</p>
       )}
 
+      {siswaId !== null && rekap.length === 0 && (
+        <p className="text-center py-4">Belum ada data rekap untuk siswa ini.</p>
+      )}
 
-      {rekap.length > 0 ? (
+      {siswaId !== null && rekap.length > 0 && (
         <div className="overflow-x-auto">
           <table className="table-auto w-full border bg-white">
             <thead>
@@ -92,8 +97,6 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             </tbody>
           </table>
         </div>
-      ) : (
-        <p className="text-center py-4">Belum ada data rekap untuk siswa ini.</p>
       )}
     </div>
   );
