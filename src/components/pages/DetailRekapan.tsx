@@ -16,7 +16,7 @@ interface Props {
 }
 
 const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
-  const [siswaId, setSiswaId] = useState<number | null>(propsSiswaId || null);
+  const [siswaId, setSiswaId] = useState<number | null>(propsSiswaId ?? null);
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
 
@@ -30,6 +30,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   };
 
   const fetchRekap = async (id: number) => {
+    console.log("Fetching rekap for siswaId:", id);
     try {
       const { data } = await api.get(`/rekap/mingguan-by-siswa?siswaId=${id}`);
       setRekap(data); // Sesuaikan struktur sesuai response backend
@@ -59,11 +60,14 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
       <div className="mb-4 w-1/2">
         <label htmlFor="nama" className="font-semibold text-base">
-          Nama Siswa
+          Pilih Siswa
           </label>
         <DropdownSiswa
-          value={siswaId || 0}
-          onChange={(val) => setSiswaId(val)}
+          value={siswaId ?? 0}
+          onChange={(val) => {
+            setSiswaId(val);
+            fetchRekap(val);
+          }}
           options={listSiswa}
         />
       </div>
