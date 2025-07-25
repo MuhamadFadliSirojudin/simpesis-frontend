@@ -57,7 +57,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
-      {!propsSiswaId && (
+      {(
         <div className="mb-4 w-1/2">
           <label className="font-semibold block mb-2">Pilih Siswa</label>
           <DropdownSiswa
@@ -67,6 +67,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
           />
         </div>
       )}
+
 
       {rekap.length > 0 ? (
         <div className="overflow-x-auto">
