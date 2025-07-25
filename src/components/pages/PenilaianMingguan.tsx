@@ -62,8 +62,8 @@ const PenilaianMingguan = () => {
             onCetakLaporan={handleCetakLaporan}
           />
         )}
-        {subTab === "lihat-rekap" && selectedSiswaId !== null && (
-          <DetailRekapan siswaId={selectedSiswaId} />
+        {subTab === "lihat-rekap" && (
+          <DetailRekapan siswaId={selectedSiswaId ?? undefined} />
         )}
         {subTab === "laporan" && selectedSiswaId !== null && (
           <GetReport siswaId={selectedSiswaId.toString()} kategori="mingguan" />

@@ -43,14 +43,14 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   }, []);
 
   useEffect(() => {
-    if (propsSiswaId) {
+    if (propsSiswaId !== undefined) {
       setSiswaId(propsSiswaId);
       fetchRekap(propsSiswaId);
     }
   }, [propsSiswaId]);
 
   useEffect(() => {
-    if (siswaId && !propsSiswaId) {
+    if (siswaId && !propsSiswaId === undefined) {
       fetchRekap(siswaId);
     }
   }, [siswaId]);
