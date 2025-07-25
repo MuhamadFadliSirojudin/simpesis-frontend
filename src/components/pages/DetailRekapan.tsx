@@ -23,7 +23,12 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   const fetchSiswa = async () => {
     try {
       const { data } = await api.get("/siswa");
-      setListSiswa(data.data);
+      const siswaList = data.data;
+      const siswaWithPlaceholder = [
+        { id: 0, nama: "Pilih Siswa", semester: "" },
+        ...siswaList,
+      ];
+      setListSiswa(siswaWithPlaceholder);
     } catch (err) {
       console.error("Gagal mengambil data siswa:", err);
     }
