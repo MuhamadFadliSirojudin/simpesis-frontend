@@ -59,16 +59,16 @@ const TabRekapMingguan = ({ onLihatRekap, onCetakLaporan }: {
                 </td>
                 <td className="border px-4 py-2 text-center space-x-2">
                   <Button
-                    className="text-blue-600 hover:underline"
+                    className="text-sm text-white cursor-pointer bg-green-600 px-3 py-1 rounded hover:bg-green-700"
                     onClick={() => onLihatRekap(siswa.id)}
                   >
-                    🔍 Lihat Rekap
+                    🔍 Detail
                   </Button>
                   <Button
-                    className="text-green-600 hover:underline"
+                    className="text-sm text-white cursor-pointer bg-yellow-600 px-3 py-1 rounded hover:bg-yellow-700"
                     onClick={() => onCetakLaporan(siswa.id)}
                   >
-                    🖨️ Cetak Laporan
+                    🖨️ Print
                   </Button>
                 </td>
               </tr>
