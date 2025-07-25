@@ -72,7 +72,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
         <div className="overflow-x-auto">
           <table className="table-auto w-full border bg-white">
             <thead>
-              <tr className="bg-gray-100 bg-blue-900 text-white">
+              <tr className="bg-blue-900 text-white">
                 <th className="border px-4 py-2 text-center">Minggu Ke</th>
                 <th className="border px-4 py-2 text-center">Modul</th>
                 <th className="border px-4 py-2 text-center">Jumlah Penilaian</th>
