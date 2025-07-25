@@ -31,7 +31,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   const fetchRekap = async (id: number) => {
     try {
-      const { data } = await api.get(`/rekap/mingguan?siswaId=${id}`);
+      const { data } = await api.get(`/rekap/mingguan-by-siswa?siswaId=${id}`);
       setRekap(data); // Sesuaikan struktur sesuai response backend
     } catch (err) {
       console.error("Gagal mengambil data rekap:", err);
