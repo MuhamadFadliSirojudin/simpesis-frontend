@@ -58,7 +58,9 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
       <div className="mb-4 w-1/2">
-        <label className="font-semibold block mb-2">Pilih Siswa</label>
+        <label htmlFor="nama" className="font-semibold text-base">
+          Nama Siswa
+          </label>
         <DropdownSiswa
           value={siswaId || 0}
           onChange={(val) => setSiswaId(val)}
