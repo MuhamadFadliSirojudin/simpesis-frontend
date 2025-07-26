@@ -65,8 +65,7 @@ const PenilaianMingguan = () => {
         {subTab === "lihat-rekap" && (
           <DetailRekapan siswaId={selectedSiswaId ?? undefined} />
         )}
-        {subTab === "laporan" && selectedSiswaId !== null && (
-          <GetReport />
+        {subTab === "laporan" && ( <GetReport />
         )}
       </div>
     </div>
