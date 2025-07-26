@@ -19,6 +19,8 @@ export type Siswa = {
   semester: number;
   kelompok: string;
   totalNilai: number;
+  waliKelas: string;
+  fase: string;
 };
 
 export type Pembelajaran = {
