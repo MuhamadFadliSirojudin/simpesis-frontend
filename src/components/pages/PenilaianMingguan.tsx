@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RekapMingguan from "./RekapMingguan";
 import DetailRekapan from "./DetailRekapan";
-import GetReport from "./GetReport";
+import GetReport from "./CetakLaporanMingguan";
 
 const PenilaianMingguan = () => {
   const [subTab, setSubTab] = useState<
@@ -66,7 +66,13 @@ const PenilaianMingguan = () => {
           <DetailRekapan siswaId={selectedSiswaId ?? undefined} />
         )}
         {subTab === "laporan" && selectedSiswaId !== null && (
-          <GetReport siswaId={selectedSiswaId.toString()} kategori="mingguan" />
+          <GetReport 
+            siswaId={selectedSiswaId}
+            namaSiswa="Nama Sementara"
+            waliKelas="Bu Siti"
+            fase="Kelompok A"
+            tujuanPembelajaran="Melatih motorik dan kognitif"
+          />
         )}
       </div>
     </div>
