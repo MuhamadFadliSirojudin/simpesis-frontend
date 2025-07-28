@@ -97,6 +97,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
                 <th className="border px-4 py-2 text-center">Minggu Ke</th>
                 <th className="border px-4 py-2 text-center">Nama Modul</th>
                 <th className="border px-4 py-2 text-center">Kegiatan Pembelajaran</th>
+                <th className="border px-4 py-2 text-center">Nilai</th>
                 <th className="border px-4 py-2 text-center">Jumlah Penilaian</th>
                 <th className="border px-4 py-2 text-center">Rata-Rata Nilai</th>
               </tr>
