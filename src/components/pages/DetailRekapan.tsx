@@ -103,32 +103,42 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             </thead>
             <tbody>
             {rekap.map((item, i) =>
-              item.kegiatanList.map((kegiatan, j) => (
-                <tr key={`${i}-${j}`}>
-                  {j === 0 && (
-                    <>
-                      <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                        {item.mingguKe}
-                      </td>
-                      <td className="border px-4 py-2" rowSpan={item.kegiatanList.length}>
-                        {item.modul}
-                      </td>
-                    </>
-                  )}
-                  <td className="border px-2 py-1">{kegiatan.nama}</td>
-                  <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
-                  {j === 0 && (
-                    <>
-                      <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                        {item.jumlah}
-                      </td>
-                      <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                        {item.rataRata}
-                      </td>
-                    </>
-                  )}
+              Array.isArray(item.kegiatanList) && item.kegiatanList.length > 0 ? (
+                item.kegiatanList.map((kegiatan, j) => (
+                  <tr key={`${i}-${j}`}>
+                    {j === 0 && (
+                      <>
+                        <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                          {item.mingguKe}
+                        </td>
+                        <td className="border px-4 py-2" rowSpan={item.kegiatanList.length}>
+                          {item.modul}
+                        </td>
+                      </>
+                    )}
+                    <td className="border px-2 py-1">{kegiatan.nama}</td>
+                    <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
+                    {j === 0 && (
+                      <>
+                        <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                          {item.jumlah}
+                        </td>
+                        <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                          {item.rataRata}
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                ))
+              ) : (
+                <tr key={i}>
+                  <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
+                  <td className="border px-4 py-2">{item.modul}</td>
+                  <td className="border px-2 py-1 text-center italic text-gray-500" colSpan={4}>
+                    Tidak ada kegiatan pembelajaran
+                  </td>
                 </tr>
-              ))
+              )
             )}
           </tbody>
           </table>
