@@ -7,6 +7,7 @@ import DropdownSiswa from "../fragments/DropdownSiswa";
 interface RekapItem {
   mingguKe: number;
   modul: string;
+  kegiatan: string;
   jumlah: number;
   rataRata: number;
 }
@@ -91,16 +92,18 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             <thead>
               <tr className="bg-blue-900 text-white">
                 <th className="border px-4 py-2 text-center">Minggu Ke</th>
-                <th className="border px-4 py-2 text-center">Modul</th>
+                <th className="border px-4 py-2 text-center">Nama Modul</th>
+                <th className="border px-4 py-2 text-center">Kegiatan Pembelajaran</th>
                 <th className="border px-4 py-2 text-center">Jumlah Penilaian</th>
-                <th className="border px-4 py-2 text-center">Rata-Rata</th>
+                <th className="border px-4 py-2 text-center">Rata-Rata Nilai</th>
               </tr>
             </thead>
             <tbody>
-              {rekap.map((item, idx) => (
-                <tr key={idx}>
+              {rekap.map((item, index) => (
+                <tr key={index}>
                   <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
                   <td className="border px-4 py-2">{item.modul}</td>
+                  <td className="border px-2 py-1">{item.kegiatan}</td>
                   <td className="border px-4 py-2 text-center">{item.jumlah}</td>
                   <td className="border px-4 py-2 text-center">{item.rataRata}</td>
                 </tr>

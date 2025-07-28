@@ -133,7 +133,7 @@ const GetReport = () => {
           className="bg-blue-900 text-sm text-nowrap text-white hover:bg-blue-800 cursor-pointer h-12 px-15"
           onClick={getReport}
         >
-          Ambil laporan nilai
+          Ambil Laporan Harian
         </Button>
       </div>
 
