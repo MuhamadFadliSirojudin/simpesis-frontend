@@ -7,9 +7,12 @@ import DropdownSiswa from "../fragments/DropdownSiswa";
 interface RekapItem {
   mingguKe: number;
   modul: string;
-  kegiatan: string;
   jumlah: number;
   rataRata: number;
+  kegiatanList: {
+    nama: string;
+    nilai: number;
+  }[];
 }
 
 interface Props {
@@ -38,7 +41,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   const fetchRekap = async (id: number) => {
     console.log("Fetching rekap for siswaId:", id);
     try {
-      const { data } = await api.get(`/rekap/mingguan-by-siswa?siswaId=${id}`);
+      const { data } = await api.get(`/rekap/mingguan-detail-by-siswa?siswaId=${id}`);
       setRekap(data); // Sesuaikan struktur sesuai response backend
     } catch (err) {
       console.error("Gagal mengambil data rekap:", err);
@@ -99,16 +102,35 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
               </tr>
             </thead>
             <tbody>
-              {rekap.map((item, index) => (
-                <tr key={index}>
-                  <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
-                  <td className="border px-4 py-2">{item.modul}</td>
-                  <td className="border px-2 py-1">{item.kegiatan}</td>
-                  <td className="border px-4 py-2 text-center">{item.jumlah}</td>
-                  <td className="border px-4 py-2 text-center">{item.rataRata}</td>
+            {rekap.map((item, i) =>
+              item.kegiatanList.map((kegiatan, j) => (
+                <tr key={`${i}-${j}`}>
+                  {j === 0 && (
+                    <>
+                      <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                        {item.mingguKe}
+                      </td>
+                      <td className="border px-4 py-2" rowSpan={item.kegiatanList.length}>
+                        {item.modul}
+                      </td>
+                    </>
+                  )}
+                  <td className="border px-2 py-1">{kegiatan.nama}</td>
+                  <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
+                  {j === 0 && (
+                    <>
+                      <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                        {item.jumlah}
+                      </td>
+                      <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                        {item.rataRata}
+                      </td>
+                    </>
+                  )}
                 </tr>
-              ))}
-            </tbody>
+              ))
+            )}
+          </tbody>
           </table>
         </div>
       )}
