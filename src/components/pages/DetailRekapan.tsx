@@ -74,7 +74,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
-      <div className="flex flex-wrap justify-end gap-6 mb-4">
+      <div className="flex gap-6 mb-4 justify-end items-end">
         <div className="flex flex-col gap-2 w-full">
           <label htmlFor="nama" className="font-semibold text-base">
             Pilih Siswa
@@ -98,11 +98,11 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             value={filterMinggu}
             onChange={(e) => setFilterMinggu(e.target.value)}
           >
-            <option value="all">Semua</option>
-            <option value="1">Minggu Ke-1</option>
-            <option value="2">Minggu Ke-2</option>
-            <option value="3">Minggu Ke-3</option>
-            <option value="4">Minggu Ke-4</option>
+            <option value="all" className="text-gray-800">Semua</option>
+            <option value="1" className="text-gray-800">Minggu Ke-1</option>
+            <option value="2" className="text-gray-800">Minggu Ke-2</option>
+            <option value="3" className="text-gray-800">Minggu Ke-3</option>
+            <option value="4" className="text-gray-800">Minggu Ke-4</option>
           </select>
         </div>
       </div>
