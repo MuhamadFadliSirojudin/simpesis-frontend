@@ -23,6 +23,13 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   const [siswaId, setSiswaId] = useState<number | null>(propsSiswaId ?? null);
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
+  const [filterMinggu, setFilterMinggu] = useState<string>("all");
+
+  // Tambahkan ini setelah deklarasi useState
+  const filteredRekap = filterMinggu === "all"
+    ? rekap
+    : rekap.filter((item) => item.mingguKe.toString() === filterMinggu);
+
 
   const fetchSiswa = async () => {
     try {
@@ -80,6 +87,20 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
           options={listSiswa}
         />
       </div>
+      <div className="flex gap-2 items-center mb-4">
+        <label className="text-base font-semibold">Filter Minggu:</label>
+        <select
+          className="border px-2 py-1 rounded"
+          value={filterMinggu}
+          onChange={(e) => setFilterMinggu(e.target.value)}
+        >
+          <option value="all">Semua</option>
+          <option value="1">Minggu Ke-1</option>
+          <option value="2">Minggu Ke-2</option>
+          <option value="3">Minggu Ke-3</option>
+          <option value="4">Minggu Ke-4</option>
+        </select>
+      </div>
 
       {siswaId === null && (
         <p className="text-center py-4">Silakan pilih siswa untuk melihat detail rekap.</p>
@@ -103,7 +124,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
               </tr>
             </thead>
             <tbody>
-            {rekap.map((item, i) =>
+            {filteredRekap.map((item, i) =>
               Array.isArray(item.kegiatanList) && item.kegiatanList.length > 0 ? (
                 item.kegiatanList.map((kegiatan, j) => (
                   <tr key={`${i}-${j}`}>
