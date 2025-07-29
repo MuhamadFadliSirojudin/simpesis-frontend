@@ -68,7 +68,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
-      <div className="flex shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7">
+      <div className="flex shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7 mb-4">
         <div className="flex flex-col gap-2 w-full">
           <label htmlFor="nama" className="font-semibold text-base">
             Pilih Siswa
