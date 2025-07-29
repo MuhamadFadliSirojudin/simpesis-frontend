@@ -74,35 +74,34 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   return (
     <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-8">
-      <div className="flex flex-col justify-between shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7">
-        <div className="flex gap-10 justify-end items-end">
-          <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="nama" className="font-semibold text-base">
-              Pilih Siswa
-              </label>
-            <DropdownSiswa
-              value={siswaId ?? 0}
-              onChange={(val) => {
-                setSiswaId(val);
-                fetchRekap(val);
-              }}
-              options={listSiswa}
-            />
-          </div>
-          <div className="flex flex-col gap-2 w-full">
-            <label className="text-base font-semibold">Filter Minggu:</label>
-            <select
-              className="border px-2 py-1 rounded"
-              value={filterMinggu}
-              onChange={(e) => setFilterMinggu(e.target.value)}
-            >
-              <option value="all">Semua</option>
-              <option value="1">Minggu Ke-1</option>
-              <option value="2">Minggu Ke-2</option>
-              <option value="3">Minggu Ke-3</option>
-              <option value="4">Minggu Ke-4</option>
-            </select>
-          </div>
+      <div className="flex gap-10 justify-end items-end">
+        <div className="flex flex-col gap-2 w-full">
+          <label htmlFor="nama" className="font-semibold text-base">
+            Pilih Siswa
+          </label>
+          <DropdownSiswa
+            value={siswaId ?? 0}
+            onChange={(val) => {
+              setSiswaId(val);
+              fetchRekap(val);
+            }}
+            options={listSiswa}
+          />
+        </div>
+        <div className="flex flex-col gap-2 w-full">
+          <label className="text-base font-semibold">
+            Filter Minggu
+          </label>
+          <select
+            value={filterMinggu}
+            onChange={(e) => setFilterMinggu(e.target.value)}
+          >
+            <option value="all">Semua</option>
+            <option value="1">Minggu Ke-1</option>
+            <option value="2">Minggu Ke-2</option>
+            <option value="3">Minggu Ke-3</option>
+            <option value="4">Minggu Ke-4</option>
+          </select>
         </div>
       </div>
 
@@ -128,45 +127,45 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
               </tr>
             </thead>
             <tbody>
-            {filteredRekap.map((item, i) =>
-              Array.isArray(item.kegiatanList) && item.kegiatanList.length > 0 ? (
-                item.kegiatanList.map((kegiatan, j) => (
-                  <tr key={`${i}-${j}`}>
-                    {j === 0 && (
-                      <>
-                        <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                          {item.mingguKe}
-                        </td>
-                        <td className="border px-4 py-2" rowSpan={item.kegiatanList.length}>
-                          {item.modul}
-                        </td>
-                      </>
-                    )}
-                    <td className="border px-2 py-1">{kegiatan.nama}</td>
-                    <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
-                    {j === 0 && (
-                      <>
-                        <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                          {item.jumlah}
-                        </td>
-                        <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                          {item.rataRata}
-                        </td>
-                      </>
-                    )}
+              {filteredRekap.map((item, i) =>
+                Array.isArray(item.kegiatanList) && item.kegiatanList.length > 0 ? (
+                  item.kegiatanList.map((kegiatan, j) => (
+                    <tr key={`${i}-${j}`}>
+                      {j === 0 && (
+                        <>
+                          <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                            {item.mingguKe}
+                          </td>
+                          <td className="border px-4 py-2" rowSpan={item.kegiatanList.length}>
+                            {item.modul}
+                          </td>
+                        </>
+                      )}
+                      <td className="border px-2 py-1">{kegiatan.nama}</td>
+                      <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
+                      {j === 0 && (
+                        <>
+                          <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                            {item.jumlah}
+                          </td>
+                          <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
+                            {item.rataRata}
+                          </td>
+                        </>
+                      )}
+                    </tr>
+                  ))
+                ) : (
+                  <tr key={i}>
+                    <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
+                    <td className="border px-4 py-2">{item.modul}</td>
+                    <td className="border px-2 py-1 text-center italic text-gray-500" colSpan={4}>
+                      Tidak ada kegiatan pembelajaran
+                    </td>
                   </tr>
-                ))
-              ) : (
-                <tr key={i}>
-                  <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
-                  <td className="border px-4 py-2">{item.modul}</td>
-                  <td className="border px-2 py-1 text-center italic text-gray-500" colSpan={4}>
-                    Tidak ada kegiatan pembelajaran
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
+                )
+              )}
+            </tbody>
           </table>
         </div>
       )}
