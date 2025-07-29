@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../../libs/axios";
 import { Siswa } from "../../types";
 import DropdownSiswa from "../fragments/DropdownSiswa";
+import TabelDetailRekapan from "../fragments/TabelDetailRekapan";
 
 interface RekapItem {
   mingguKe: number;
@@ -25,12 +26,6 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   const [rekap, setRekap] = useState<RekapItem[]>([]);
   const [filterMinggu, setFilterMinggu] = useState<string>("all");
 
-  // Tambahkan ini setelah deklarasi useState
-  const filteredRekap = filterMinggu === "all"
-    ? rekap
-    : rekap.filter((item) => item.mingguKe.toString() === filterMinggu);
-
-
   const fetchSiswa = async () => {
     try {
       const { data } = await api.get("/siswa");
@@ -46,10 +41,9 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   };
 
   const fetchRekap = async (id: number) => {
-    console.log("Fetching rekap for siswaId:", id);
     try {
       const { data } = await api.get(`/rekap/mingguan-detail-by-siswa?siswaId=${id}`);
-      setRekap(data); // Sesuaikan struktur sesuai response backend
+      setRekap(data);
     } catch (err) {
       console.error("Gagal mengambil data rekap:", err);
     }
@@ -94,7 +88,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             Filter Minggu
           </label>
           <select
-            className="block w-full appearance-none bg-white border border-gray-400  text-black font-medium px-4 py-3 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-900 transition-all"
+            className="block w-full appearance-none bg-white border border-gray-400 text-black font-medium px-4 py-3 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-900 transition-all"
             value={filterMinggu}
             onChange={(e) => setFilterMinggu(e.target.value)}
           >
@@ -116,60 +110,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
       )}
 
       {siswaId !== null && rekap.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full border bg-white">
-            <thead>
-              <tr className="bg-blue-900 text-white">
-                <th className="border px-4 py-2 text-center">Minggu Ke</th>
-                <th className="border px-4 py-2 text-center">Nama Modul</th>
-                <th className="border px-4 py-2 text-center">Kegiatan Pembelajaran</th>
-                <th className="border px-4 py-2 text-center">Nilai</th>
-                <th className="border px-4 py-2 text-center">Jumlah Penilaian</th>
-                <th className="border px-4 py-2 text-center">Rata-Rata Nilai</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredRekap.map((item, i) =>
-                Array.isArray(item.kegiatanList) && item.kegiatanList.length > 0 ? (
-                  item.kegiatanList.map((kegiatan, j) => (
-                    <tr key={`${i}-${j}`}>
-                      {j === 0 && (
-                        <>
-                          <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                            {item.mingguKe}
-                          </td>
-                          <td className="border px-4 py-2" rowSpan={item.kegiatanList.length}>
-                            {item.modul}
-                          </td>
-                        </>
-                      )}
-                      <td className="border px-2 py-1">{kegiatan.nama}</td>
-                      <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
-                      {j === 0 && (
-                        <>
-                          <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                            {item.jumlah}
-                          </td>
-                          <td className="border px-4 py-2 text-center" rowSpan={item.kegiatanList.length}>
-                            {item.rataRata}
-                          </td>
-                        </>
-                      )}
-                    </tr>
-                  ))
-                ) : (
-                  <tr key={i}>
-                    <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
-                    <td className="border px-4 py-2">{item.modul}</td>
-                    <td className="border px-2 py-1 text-center italic text-gray-500" colSpan={4}>
-                      Tidak ada kegiatan pembelajaran
-                    </td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
-        </div>
+        <TabelDetailRekapan data={rekap} filterMinggu={filterMinggu} />
       )}
     </div>
   );
