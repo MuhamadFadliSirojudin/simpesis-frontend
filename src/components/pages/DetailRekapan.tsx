@@ -73,33 +73,37 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   }, [siswaId]);
 
   return (
-    <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
-      <div className="mb-4 w-1/2">
-        <label htmlFor="nama" className="font-semibold text-base">
-          Pilih Siswa
-          </label>
-        <DropdownSiswa
-          value={siswaId ?? 0}
-          onChange={(val) => {
-            setSiswaId(val);
-            fetchRekap(val);
-          }}
-          options={listSiswa}
-        />
-      </div>
-      <div className="flex gap-2 items-center mb-4">
-        <label className="text-base font-semibold">Filter Minggu:</label>
-        <select
-          className="border px-2 py-1 rounded"
-          value={filterMinggu}
-          onChange={(e) => setFilterMinggu(e.target.value)}
-        >
-          <option value="all">Semua</option>
-          <option value="1">Minggu Ke-1</option>
-          <option value="2">Minggu Ke-2</option>
-          <option value="3">Minggu Ke-3</option>
-          <option value="4">Minggu Ke-4</option>
-        </select>
+    <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-8">
+      <div className="flex flex-col justify-between shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7">
+        <div className="flex gap-10 justify-end items-end">
+          <div className="flex flex-col gap-2 w-full">
+            <label htmlFor="nama" className="font-semibold text-base">
+              Pilih Siswa
+              </label>
+            <DropdownSiswa
+              value={siswaId ?? 0}
+              onChange={(val) => {
+                setSiswaId(val);
+                fetchRekap(val);
+              }}
+              options={listSiswa}
+            />
+          </div>
+          <div className="flex flex-col gap-2 w-full">
+            <label className="text-base font-semibold">Filter Minggu:</label>
+            <select
+              className="border px-2 py-1 rounded"
+              value={filterMinggu}
+              onChange={(e) => setFilterMinggu(e.target.value)}
+            >
+              <option value="all">Semua</option>
+              <option value="1">Minggu Ke-1</option>
+              <option value="2">Minggu Ke-2</option>
+              <option value="3">Minggu Ke-3</option>
+              <option value="4">Minggu Ke-4</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       {siswaId === null && (
