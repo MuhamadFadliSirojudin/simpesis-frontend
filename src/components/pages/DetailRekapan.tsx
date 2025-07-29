@@ -74,7 +74,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
-      <div className="flex flex-wrap items-end gap-6 mb-4">
+      <div className="flex flex-wrap justify-end gap-6 mb-4">
         <div className="flex flex-col gap-2 w-full">
           <label htmlFor="nama" className="font-semibold text-base">
             Pilih Siswa
@@ -94,7 +94,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             Filter Minggu
           </label>
           <select
-            className="border px-3 py-2 rounded min-w-[160px]"
+            className="block w-full appearance-none bg-white border border-gray-400  text-black font-medium px-4 py-3 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-900 transition-all"
             value={filterMinggu}
             onChange={(e) => setFilterMinggu(e.target.value)}
           >
