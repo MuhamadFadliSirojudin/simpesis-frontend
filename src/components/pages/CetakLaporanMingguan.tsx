@@ -1,29 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import api from "../../libs/axios";
-import { Modul, Siswa } from "../../types"; // ✅ pakai tipe global
+import { Siswa } from "../../types";
 import Button from "../fragments/Button";
-import Dropdown from "../fragments/Dropdown";
 import DropdownSiswa from "../fragments/DropdownSiswa";
+import TabelDetailRekapan from "../fragments/TabelDetailRekapan";
 
 interface RekapItem {
   mingguKe: number;
   modul: string;
-  kegiatan: string;
   jumlah: number;
   rataRata: number;
-  walikelas: string
-  nuptk: string
+  kegiatanList: {
+    nama: string;
+    nilai: number;
+  }[];
+  walikelas: string;
+  nuptk: string;
 }
 
 const CetakLaporanMingguan = () => {
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
-  const [listModul, setListModul] = useState<Modul[]>([]);
-  const [selectedModul, setSelectedModul] = useState<number>(0);
   const [selectedSiswa, setSelectedSiswa] = useState<number>(0);
   const [siswaDetail, setSiswaDetail] = useState<Siswa | null>(null);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
-  const [mingguKe, setMingguKe] = useState<number>(0);
+  const [mingguKe, setMingguKe] = useState<string>("all");
 
   const componentRef = useRef<HTMLDivElement>(null);
   const tanggalCetak = new Date().toLocaleDateString("id-ID");
@@ -41,26 +42,18 @@ const CetakLaporanMingguan = () => {
     setListSiswa(addedData);
   };
 
-  const fetchModul = async () => {
-    const { data } = await api.get("/modul");
-    const addedData: Modul[] = [
-      { id: 0, penyusun: "kosong", topik: "Pilih Modul", tujuan: "kosong" },
-      ...data.data,
-    ];
-
-    setListModul(addedData);
-  };
-
   const getLaporan = async () => {
     if (!selectedSiswa) return;
     const { data } = await api.get(`/rekap/mingguan-laporan?siswaId=${selectedSiswa}`);
     setSiswaDetail(data.siswa);
-    setRekap(data.rekap);
-    if (data.rekap.length > 0) setMingguKe(data.rekap[0].mingguKe);
+    setRekap(
+      mingguKe === "all"
+        ? data.rekap
+        : data.rekap.filter((item: RekapItem) => item.mingguKe.toString() === mingguKe)
+    );
   };
 
   useEffect(() => {
-    fetchModul();
     fetchSiswa();
   }, []);
 
@@ -78,15 +71,21 @@ const CetakLaporanMingguan = () => {
               onChange={setSelectedSiswa}
             />
           </div>
-          <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="topik" className="text-base font-semibold">
-              Pilih Modul
+          <div className="flex flex-col w-full gap-2">
+            <label htmlFor="minggu" className="text-base font-semibold">
+              Filter Minggu
             </label>
-            <Dropdown
-              options={listModul}
-              value={selectedModul}
-              onChange={setSelectedModul}
-            />
+            <select
+              className="block w-full appearance-none bg-white border border-gray-400 text-black font-medium px-4 py-3 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-900 transition-all"
+              value={mingguKe}
+              onChange={(e) => setMingguKe(e.target.value)}
+            >
+              <option value="all" className="text-gray-800">Semua</option>
+              <option value="1" className="text-gray-800">Minggu Ke-1</option>
+              <option value="2" className="text-gray-800">Minggu Ke-2</option>
+              <option value="3" className="text-gray-800">Minggu Ke-3</option>
+              <option value="4" className="text-gray-800">Minggu Ke-4</option>
+            </select>
           </div>
         </div>
         <Button
@@ -106,13 +105,10 @@ const CetakLaporanMingguan = () => {
             <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
               <tbody className="mb-4 space-y-1">
                 <tr className="h-16 border-b border-gray-400">
-                  <td className="align-top w-[35%] px-4 py-2">Minggu Ke-</td>
-                  <td className="align-top px-4 py-2">{mingguKe}</td>
-                </tr>
-                <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
                   <td className="align-top px-4 py-2">{siswaDetail.waliKelas || "-"}</td>
-                </tr><tr className="h-16 border-b border-gray-400">
+                </tr>
+                <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Fase/Kelompok</td>
                   <td className="align-top px-4 py-2">{siswaDetail.kelompok || "-"}</td>
                 </tr>
@@ -127,45 +123,21 @@ const CetakLaporanMingguan = () => {
               </tbody>
             </table>
 
-            <table className="table-auto w-full border bg-white">
-              <thead>
-                <tr className="bg-blue-900 text-white">
-                  <th className="border px-4 py-2 text-center">No</th>
-                  <th className="border px-4 py-2 text-center">Nama Modul</th>
-                  <th className="border px-4 py-2 text-center">Kegiatan Pembelajaran</th>
-                  <th className="border px-4 py-2 text-center">Jumlah Penilaian</th>
-                  <th className="border px-4 py-2 text-center">Rata-rata Nilai</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rekap.map((item, index) => (
-                  <tr key={index}>
-                    <td className="border px-2 py-1 text-center">{index + 1}</td>
-                    <td className="border px-2 py-1">{item.modul}</td>
-                    <td className="border px-2 py-1">{item.kegiatan}</td>
-                    <td className="border px-2 py-1 text-center">{item.jumlah}</td>
-                    <td className="border px-2 py-1 text-center">{item.rataRata}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            
-            {/*Area tanda tangan*/}
+            <TabelDetailRekapan data={rekap} />
+
             <div className="w-full flex justify-around items-start pt-10">
               <div className="flex flex-col items-center text-xl gap-1">
                 <p >Mengetahui :</p>
                 <p >Kepala Sekolah</p>
-                <div className="h-20" /> {/* Spacer tanda tangan */}
+                <div className="h-20" />
                 <p className="font-semibold">Putri Irma Susanti, M.Pd.</p>
                 <p className="font-semibold">NUPTK. 3859764665300042</p>
               </div>
-
-              {/* Kolom Wali Kelas */}
               <div className="flex flex-col items-center text-xl gap-1">
                 <p className="font-semibold">&nbsp;</p>
                 <p >Tasikmalaya, {tanggalCetak}</p>
                 <p >Wali Kelas,</p>
-                <div className="h-20" /> {/* Spacer tanda tangan */}
+                <div className="h-20" />
                 <p className="font-semibold">{siswaDetail.waliKelas || "-"}</p>
                 <p className="font-semibold">NUPTK. {}</p>
               </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import ModulInput from "../pages/ModulInput";
 import PembelajaranInput from "../pages/PembelajaranInput";
 import NilaiIInput from "./NilaiIInput";
-import GetReport from "./CetakLaporan";
+import GetReport from "./CetakLaporanHarian";
 
 const PenilaianHarian = () => {
   const [subTab, setSubTab] = useState<"modul" | "pembelajaran" | "nilai" |"laporan">("modul");

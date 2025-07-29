@@ -14,7 +14,7 @@ interface RekapItem {
 
 interface Props {
   data: RekapItem[];
-  filterMinggu: string;
+  filterMinggu?: string;
 }
 
 const TabelDetailRekapan: React.FC<Props> = ({ data, filterMinggu }) => {
