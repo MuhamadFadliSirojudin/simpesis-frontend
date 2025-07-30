@@ -21,12 +21,12 @@ interface Props {
 
 const TabelDetailRekapan: React.FC<Props> = ({
   data,
-  filterMinggu = "all",
+  filterMinggu = "Semua",
   showNo = false,
   showMinggu = true,
 }) => {
   const filteredRekap =
-    filterMinggu === "all"
+    filterMinggu === "Semua"
       ? data
       : data.filter((item) => item.mingguKe.toString() === filterMinggu);
 

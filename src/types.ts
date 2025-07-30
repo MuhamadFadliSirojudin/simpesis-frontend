@@ -21,7 +21,10 @@ export type Siswa = {
   totalNilai: number;
   waliKelas?: string;
   fase: string;
-
+  guru?: {
+    nama: string;
+    nuptk: string;
+  };
 };
 
 export type Pembelajaran = {

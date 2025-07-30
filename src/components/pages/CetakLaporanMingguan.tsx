@@ -111,7 +111,7 @@ const CetakLaporanMingguan = () => {
                 </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
-                  <td className="align-top px-4 py-2">{siswaDetail.waliKelas || "-"}</td>
+                  <td className="align-top px-4 py-2">{siswaDetail.guru?.nama || "-"}</td>
                 </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Fase/Kelompok</td>
@@ -142,8 +142,8 @@ const CetakLaporanMingguan = () => {
                 <p >Tasikmalaya, {tanggalCetak}</p>
                 <p >Wali Kelas,</p>
                 <div className="h-20" />
-                <p className="font-semibold">{siswaDetail.waliKelas || "-"}</p>
-                <p className="font-semibold">NUPTK. {}</p>
+                <p className="font-semibold">{siswaDetail.guru?.nama || "-"}</p>
+                <p className="font-semibold">NUPTK. {siswaDetail.guru?.nuptk || "-"}</p>
               </div>
             </div>
           </div>
