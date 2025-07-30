@@ -19,12 +19,12 @@ const TablePenilaian: React.FC<NilaiProps> = ({
       <table className="min-w-full border border-gray-300 rounded-md bg-white text-sm">
         <thead className="bg-blue-900 text-white">
           <tr>
-            <th className="px-4 py-3 text-left w-[25%]">
+            <th className="border px-4 py-3 text-center w-[25%]">
               Kegiatan Pembelajaran
             </th>
-            <th className="px-4 py-3 text-left">Foto Karya</th>
+            <th className="border px-4 py-3 text-center">Foto Karya</th>
             {opsiNilai.map((opt) => (
-              <th key={opt} className="px-4 py-3 text-center">
+              <th key={opt} className="border px-4 py-2 text-center">
                 {opt}
               </th>
             ))}
@@ -40,8 +40,8 @@ const TablePenilaian: React.FC<NilaiProps> = ({
           ) : (
             data.map((item) => (
               <tr key={item.id} className="border-t h-12">
-                <td className="px-4 py-2">{item.nama}</td>
-                <td className="px-4 py-2">
+                <td className="border px-4 py-2">{item.nama}</td>
+                <td className="border px-4 py-2">
                   <input
                     type="file"
                     accept="image/*"
@@ -54,7 +54,7 @@ const TablePenilaian: React.FC<NilaiProps> = ({
                   />
                 </td>
                 {opsiNilai.map((opt, i) => (
-                  <td key={opt} className="px-4 py-2 text-center">
+                  <td key={opt} className="border px-4 py-2 text-center">
                     <input
                       type="radio"
                       name={`nilai${item.id}`}

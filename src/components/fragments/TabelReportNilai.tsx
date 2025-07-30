@@ -12,10 +12,10 @@ const TabelReportNilai = ({ data }: { data: NilaiKegiatan[] }) => {
     <table className="min-w-full border border-gray-300 rounded-md bg-white text-sm">
       <thead className="bg-blue-900 text-white">
         <tr>
-          <th className="px-4 py-3 text-left w-[30%] border border-black">
+          <th className="px-4 py-3 text-center w-[30%] border border-black">
             Kegiatan Pembelajaran
           </th>
-          <th className="px-4 py-3 text-left border border-black">
+          <th className="px-4 py-3 text-center border border-black">
             Foto Karya
           </th>
           {opsiNilai.map((opt) => (

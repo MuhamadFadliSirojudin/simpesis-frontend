@@ -30,19 +30,19 @@ const TabelKegiatan: React.FC<TabelKegiatanProps> = ({ data, fetch }) => {
         <table className="min-w-full bg-white border border-gray-200 rounded shadow">
           <thead className="bg-blue-900 text-white">
             <tr>
-              <th className="px-4 py-3 w-[10%] text-center">No</th>
-              <th className="px-4 py-3 text-left">Nama Kegiatan</th>
-              <th className="px-4 py-3 w-[10%]"></th>
+              <th className="border px-4 py-3 w-[10%] text-center">No</th>
+              <th className="border px-4 py-3 text-center">Nama Kegiatan</th>
+              <th className="border px-4 py-3 w-[10%] text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
             {data?.map((kegiatan, index) => (
               <tr key={index} className="border-b hover:bg-blue-50 transition">
-                <td className="px-4 py-2 text-center">{index + 1}</td>
-                <td className="px-4 py-2">{kegiatan.nama}</td>
+                <td className="border px-4 py-2 text-center">{index + 1}</td>
+                <td className="border px-4 py-2">{kegiatan.nama}</td>
                 <td>
                   <button
-                    className="px-4 py-2 text-red-700 cursor-pointer"
+                    className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
                     onClick={(e) => {
                       e.preventDefault();
                       deleteKegiatan(kegiatan.id);

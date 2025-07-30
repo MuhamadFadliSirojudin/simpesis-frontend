@@ -46,6 +46,7 @@ const CetakLaporanMingguan = () => {
     if (!selectedSiswa) return;
     const { data } = await api.get(`/rekap/mingguan-laporan?siswaId=${selectedSiswa}`);
     setSiswaDetail(data.siswa);
+    console.log("REKAP RESPONSE:", data.rekap);
     setRekap(
       mingguKe === "all"
         ? data.rekap
