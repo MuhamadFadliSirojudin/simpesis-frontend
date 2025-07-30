@@ -15,9 +15,16 @@ interface RekapItem {
 interface Props {
   data: RekapItem[];
   filterMinggu?: string;
+  showMinggu?: boolean;
+  showNo?: boolean;
 }
 
-const TabelDetailRekapan: React.FC<Props> = ({ data, filterMinggu }) => {
+const TabelDetailRekapan: React.FC<Props> = ({ 
+  data, 
+  filterMinggu = "all",
+  showNo = false,
+  showMinggu = true,
+}) => {
   const filteredRekap =
     filterMinggu === "all"
       ? data
@@ -28,7 +35,8 @@ const TabelDetailRekapan: React.FC<Props> = ({ data, filterMinggu }) => {
       <table className="table-auto w-full border bg-white">
         <thead>
           <tr className="bg-blue-900 text-white">
-            <th className="border px-4 py-2 text-center">Minggu Ke</th>
+            {showNo && <th className="border px-4 py-2 text-center">No</th>}
+            {showMinggu && <th className="border px-4 py-2 text-center">Minggu Ke</th>}
             <th className="border px-4 py-2 text-center">Nama Modul</th>
             <th className="border px-4 py-2 text-center">Kegiatan Pembelajaran</th>
             <th className="border px-4 py-2 text-center">Nilai</th>
@@ -43,12 +51,13 @@ const TabelDetailRekapan: React.FC<Props> = ({ data, filterMinggu }) => {
                 <tr key={`${i}-${j}`}>
                   {j === 0 && (
                     <>
-                      <td
+                      {showNo && <td className="border px-2 py-1 text-center">{i + 1}</td>}
+                      {showMinggu && <td
                         className="border px-4 py-2 text-center"
                         rowSpan={item.kegiatanList.length}
                       >
                         {item.mingguKe}
-                      </td>
+                      </td>}
                       <td
                         className="border px-4 py-2"
                         rowSpan={item.kegiatanList.length}

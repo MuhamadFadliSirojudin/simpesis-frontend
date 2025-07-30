@@ -124,7 +124,7 @@ const CetakLaporanMingguan = () => {
               </tbody>
             </table>
 
-            <TabelDetailRekapan data={rekap} />
+            <TabelDetailRekapan data={rekap} filterMinggu={mingguKe} showNo={true} showMinggu={false}/>
 
             <div className="w-full flex justify-around items-start pt-10">
               <div className="flex flex-col items-center text-xl gap-1">
