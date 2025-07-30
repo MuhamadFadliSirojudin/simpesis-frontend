@@ -102,9 +102,13 @@ const CetakLaporanMingguan = () => {
       {rekap.length > 0 && siswaDetail && (
         <>
           <div ref={componentRef} className="w-full flex flex-col gap-5 py-10 px-10">
-            <h2 className="text-center text-lg font-bold mb-4">Laporan Penilaian Mingguan</h2>
+            <h2 className="text-center text-2xl font-bold">Laporan Penilaian Mingguan</h2>
             <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
-              <tbody className="mb-4 space-y-1">
+              <tbody className="border border-gray-400">
+                <tr className="h-16 border-b border-gray-400">
+                  <td className="align-top w-[35%] px-4 py-2">Minggu Ke</td>
+                  <td className="align-top px-4 py-2">{mingguKe}</td>
+                </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
                   <td className="align-top px-4 py-2">{siswaDetail.waliKelas || "-"}</td>
@@ -135,8 +139,8 @@ const CetakLaporanMingguan = () => {
                 <p className="font-semibold">NUPTK. 3859764665300042</p>
               </div>
               <div className="flex flex-col items-center text-xl gap-1">
-                <p className="font-semibold">&nbsp;</p>
                 <p >Tasikmalaya, {tanggalCetak}</p>
+                <p className="font-semibold">&nbsp;</p>
                 <p >Wali Kelas,</p>
                 <div className="h-20" />
                 <p className="font-semibold">{siswaDetail.waliKelas || "-"}</p>

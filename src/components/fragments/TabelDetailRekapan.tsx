@@ -45,13 +45,13 @@ const TabelDetailRekapan: React.FC<Props> = ({
           </tr>
         </thead>
         <tbody>
-          {filteredRekap.map((item, i) =>
+          {filteredRekap.map((item, index) =>
             Array.isArray(item.kegiatanList) && item.kegiatanList.length > 0 ? (
-              item.kegiatanList.map((kegiatan, j) => (
-                <tr key={`${i}-${j}`}>
-                  {j === 0 && (
+              item.kegiatanList.map((kegiatan, idx) => (
+                <tr key={`${index}-${idx}`}>
+                  {idx === 0 && (
                     <>
-                      {showNo && <td className="border px-2 py-1 text-center">{i + 1}</td>}
+                      {showNo && <td className="border px-2 py-1 text-center">{index + 1}</td>}
                       {showMinggu && <td
                         className="border px-4 py-2 text-center"
                         rowSpan={item.kegiatanList.length}
@@ -68,7 +68,7 @@ const TabelDetailRekapan: React.FC<Props> = ({
                   )}
                   <td className="border px-2 py-1">{kegiatan.nama}</td>
                   <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
-                  {j === 0 && (
+                  {idx === 0 && (
                     <>
                       <td
                         className="border px-4 py-2 text-center"
@@ -87,7 +87,7 @@ const TabelDetailRekapan: React.FC<Props> = ({
                 </tr>
               ))
             ) : (
-              <tr key={i}>
+              <tr key={index}>
                 <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
                 <td className="border px-4 py-2">{item.modul}</td>
                 <td
