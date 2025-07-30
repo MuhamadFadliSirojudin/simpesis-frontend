@@ -24,7 +24,7 @@ const CetakLaporanMingguan = () => {
   const [selectedSiswa, setSelectedSiswa] = useState<number>(0);
   const [siswaDetail, setSiswaDetail] = useState<Siswa | null>(null);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
-  const [mingguKe, setMingguKe] = useState<string>("all");
+  const [mingguKe, setMingguKe] = useState<string>("Semua");
 
   const componentRef = useRef<HTMLDivElement>(null);
   const tanggalCetak = new Date().toLocaleDateString("id-ID");
@@ -48,7 +48,7 @@ const CetakLaporanMingguan = () => {
     setSiswaDetail(data.siswa);
     console.log("REKAP RESPONSE:", data.rekap);
     setRekap(
-      mingguKe === "all"
+      mingguKe === "Semua"
         ? data.rekap
         : data.rekap.filter((item: RekapItem) => item.mingguKe.toString() === mingguKe)
     );
@@ -140,7 +140,6 @@ const CetakLaporanMingguan = () => {
               </div>
               <div className="flex flex-col items-center text-xl gap-1">
                 <p >Tasikmalaya, {tanggalCetak}</p>
-                <p className="font-semibold">&nbsp;</p>
                 <p >Wali Kelas,</p>
                 <div className="h-20" />
                 <p className="font-semibold">{siswaDetail.waliKelas || "-"}</p>
