@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PenilaianHarian from "../pages/PenilaianHarian";
 import PenilaianMingguan from "../pages/PenilaianMingguan";
+import PenilaianBulanan from "../pages/PenilaianBulanan";
 import api from "../../libs/axios"; // pastikan import ini sudah ada
 
 const PenilaianSiswa = () => {
@@ -61,7 +62,7 @@ const PenilaianSiswa = () => {
             <div className="bg-white p-6 rounded shadow">
                 {activeTab === "harian" && <PenilaianHarian />}
                 {activeTab === "mingguan" && <PenilaianMingguan />}
-                {activeTab === "bulanan" && <div>📙 Rekap dari Penilaian Mingguan</div>}
+                {activeTab === "bulanan" && <PenilaianBulanan/>}
                 {activeTab === "semester" && <div>📕 Rekap dari Penilaian Bulanan</div>}
             </div>
         </div>

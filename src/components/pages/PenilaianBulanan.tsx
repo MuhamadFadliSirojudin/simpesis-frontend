@@ -1,9 +1,9 @@
 import { useState } from "react";
-import RekapMingguan from "./RekapMingguan";
-import DetailRekapan from "./DetailRekapMingguan";
-import CetakLaporanMingguan from "./CetakLaporanMingguan";
+import RekapBulanan from "./RekapBulanan";
+import DetailRekapBulanan from "./DetailRekapBulanan";
+import CetakLaporanBulanan from "./CetakLaporanBulanan";
 
-const PenilaianMingguan = () => {
+const PenilaianBulanan = () => {
   const [subTab, setSubTab] = useState<
     "rekap" | "lihat-rekap" | "laporan"
   >("rekap");
@@ -57,20 +57,20 @@ const PenilaianMingguan = () => {
 
       <div>
         {subTab === "rekap" && (
-          <RekapMingguan
+          <RekapBulanan
             onLihatRekap={handleLihatRekap}
             onCetakLaporan={handleCetakLaporan}
           />
         )}
         {subTab === "lihat-rekap" && (
-          <DetailRekapan siswaId={selectedSiswaId ?? undefined} />
+          <DetailRekapBulanan siswaId={selectedSiswaId ?? undefined} />
         )}
         {subTab === "laporan" && ( 
-          <CetakLaporanMingguan siswaId={selectedSiswaId ?? undefined}/>
+          <CetakLaporanBulanan siswaId={selectedSiswaId ?? undefined}/>
         )}
       </div>
     </div>
   );
 };
 
-export default PenilaianMingguan;
+export default PenilaianBulanan;
