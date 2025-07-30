@@ -19,7 +19,11 @@ interface RekapItem {
   nuptk: string;
 }
 
-const CetakLaporanMingguan = () => {
+interface Props {
+  siswaId?: number;
+}
+
+const CetakLaporanMingguan: React.FC<Props> = ({ siswaId }) => {
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
   const [selectedSiswa, setSelectedSiswa] = useState<number>(0);
   const [siswaDetail, setSiswaDetail] = useState<Siswa | null>(null);
@@ -61,6 +65,12 @@ const CetakLaporanMingguan = () => {
   useEffect(() => {
     fetchSiswa();
   }, []);
+
+  useEffect(() => {
+    if (siswaId) {
+      setSelectedSiswa(siswaId);
+    }
+  }, [siswaId]);
 
   return (
     <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-8">

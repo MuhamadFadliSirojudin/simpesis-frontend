@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RekapMingguan from "./RekapMingguan";
 import DetailRekapan from "./DetailRekapan";
-import GetReport from "./CetakLaporanMingguan";
+import CetakLaporanMingguan from "./CetakLaporanMingguan";
 
 const PenilaianMingguan = () => {
   const [subTab, setSubTab] = useState<
@@ -65,7 +65,8 @@ const PenilaianMingguan = () => {
         {subTab === "lihat-rekap" && (
           <DetailRekapan siswaId={selectedSiswaId ?? undefined} />
         )}
-        {subTab === "laporan" && ( <GetReport />
+        {subTab === "laporan" && ( 
+          <CetakLaporanMingguan siswaId={selectedSiswaId ?? undefined}/>
         )}
       </div>
     </div>
