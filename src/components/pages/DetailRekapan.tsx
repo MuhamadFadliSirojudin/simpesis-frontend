@@ -24,7 +24,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   const [siswaId, setSiswaId] = useState<number | null>(propsSiswaId ?? null);
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
-  const [filterMinggu, setFilterMinggu] = useState<string>("all");
+  const [filterMinggu, setFilterMinggu] = useState<string>("Semua");
 
   const fetchSiswa = async () => {
     try {
@@ -92,7 +92,7 @@ const DetailRekapan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             value={filterMinggu}
             onChange={(e) => setFilterMinggu(e.target.value)}
           >
-            <option value="all" className="text-gray-800">Semua</option>
+            <option value="Semua" className="text-gray-800">Semua</option>
             <option value="1" className="text-gray-800">Minggu Ke-1</option>
             <option value="2" className="text-gray-800">Minggu Ke-2</option>
             <option value="3" className="text-gray-800">Minggu Ke-3</option>
