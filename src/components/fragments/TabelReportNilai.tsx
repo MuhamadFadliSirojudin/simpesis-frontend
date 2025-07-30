@@ -9,19 +9,19 @@ const opsiNilai = [
 
 const TabelReportNilai = ({ data }: { data: NilaiKegiatan[] }) => {
   return (
-    <table className="min-w-full border border-gray-300 rounded-md bg-white text-sm">
+    <table className="min-w-full border border-gray-200 rounded shadow bg-white">
       <thead className="bg-blue-900 text-white">
         <tr>
-          <th className="px-4 py-3 text-center w-[30%] border border-black">
+          <th className="border px-4 py-3 text-center w-[30%]">
             Kegiatan Pembelajaran
           </th>
-          <th className="px-4 py-3 text-center border border-black">
+          <th className="border px-4 py-3 text-center">
             Foto Karya
           </th>
           {opsiNilai.map((opt) => (
             <th
               key={opt}
-              className="px-4 py-3 text-center w-[12%] border border-black"
+              className="border px-4 py-3 text-center w-[12%]"
             >
               {opt}
             </th>
@@ -37,11 +37,11 @@ const TabelReportNilai = ({ data }: { data: NilaiKegiatan[] }) => {
           </tr>
         ) : (
           data.map((item) => (
-            <tr key={item.id} className="border border-gray-400">
-              <td className="px-4 py-2 border border-gray-400">
+            <tr key={item.id} className="border hover:bg-blue-50 transition">
+              <td className="px-4 py-2 border">
                 {item.pembelajaran.nama}
               </td>
-              <td className="px-4 py-2 border border-gray-400">
+              <td className="px-4 py-2 border">
                 <img
                   src={item.foto_karya}
                   className="w-full"
@@ -51,7 +51,7 @@ const TabelReportNilai = ({ data }: { data: NilaiKegiatan[] }) => {
               {opsiNilai.map((opt, i) => (
                 <td
                   key={opt}
-                  className="px-4 py-2 text-center border border-gray-400"
+                  className="px-4 py-2 text-center border"
                 >
                   {item.nilai === i + 1 ? "√" : " "}
                 </td>

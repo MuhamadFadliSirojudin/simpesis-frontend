@@ -43,16 +43,18 @@ const TableListModul = ({
               >
                 <td className="border px-4 py-2 text-center">{index + 1}</td>
                 <td className="border px-4 py-2">{modul.topik}</td>
-                <td>
-                  <button
-                    className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      deleteModul(modul.id);
-                    }}
-                  >
-                    Hapus
-                  </button>
+                <td className="px-4 py-2 border">
+                  <div className="flex justify-center items-center gap-2">
+                    <button
+                      className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteModul(modul.id);
+                      }}
+                    >
+                      Hapus
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

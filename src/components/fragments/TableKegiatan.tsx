@@ -40,16 +40,18 @@ const TabelKegiatan: React.FC<TabelKegiatanProps> = ({ data, fetch }) => {
               <tr key={index} className="border-b hover:bg-blue-50 transition">
                 <td className="border px-4 py-2 text-center">{index + 1}</td>
                 <td className="border px-4 py-2">{kegiatan.nama}</td>
-                <td>
-                  <button
-                    className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      deleteKegiatan(kegiatan.id);
-                    }}
-                  >
-                    Hapus
-                  </button>
+                <td className="px-4 py-2 border">
+                  <div className="flex justify-center items-center gap-2">
+                    <button
+                      className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteKegiatan(kegiatan.id);
+                      }}
+                    >
+                      Hapus
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
