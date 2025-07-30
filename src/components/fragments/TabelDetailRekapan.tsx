@@ -19,8 +19,8 @@ interface Props {
   showNo?: boolean;
 }
 
-const TabelDetailRekapan: React.FC<Props> = ({ 
-  data, 
+const TabelDetailRekapan: React.FC<Props> = ({
+  data,
   filterMinggu = "all",
   showNo = false,
   showMinggu = true,
@@ -49,22 +49,29 @@ const TabelDetailRekapan: React.FC<Props> = ({
             Array.isArray(item.kegiatanList) && item.kegiatanList.length > 0 ? (
               item.kegiatanList.map((kegiatan, idx) => (
                 <tr key={`${index}-${idx}`}>
+                  {idx === 0 && showNo && (
+                    <td
+                      className="border px-2 py-1 text-center"
+                      rowSpan={item.kegiatanList.length}
+                    >
+                      {index + 1}
+                    </td>
+                  )}
+                  {idx === 0 && showMinggu && (
+                    <td
+                      className="border px-4 py-2 text-center"
+                      rowSpan={item.kegiatanList.length}
+                    >
+                      {item.mingguKe}
+                    </td>
+                  )}
                   {idx === 0 && (
-                    <>
-                      {showNo && <td className="border px-2 py-1 text-center">{index + 1}</td>}
-                      {showMinggu && <td
-                        className="border px-4 py-2 text-center"
-                        rowSpan={item.kegiatanList.length}
-                      >
-                        {item.mingguKe}
-                      </td>}
-                      <td
-                        className="border px-4 py-2"
-                        rowSpan={item.kegiatanList.length}
-                      >
-                        {item.modul}
-                      </td>
-                    </>
+                    <td
+                      className="border px-4 py-2"
+                      rowSpan={item.kegiatanList.length}
+                    >
+                      {item.modul}
+                    </td>
                   )}
                   <td className="border px-2 py-1">{kegiatan.nama}</td>
                   <td className="border px-2 py-1 text-center">{kegiatan.nilai}</td>
@@ -88,11 +95,14 @@ const TabelDetailRekapan: React.FC<Props> = ({
               ))
             ) : (
               <tr key={index}>
-                <td className="border px-4 py-2 text-center">{item.mingguKe}</td>
+                {showNo && <td className="border px-2 py-1 text-center">{index + 1}</td>}
+                {showMinggu && <td className="border px-4 py-2 text-center">{item.mingguKe}</td>}
                 <td className="border px-4 py-2">{item.modul}</td>
                 <td
                   className="border px-2 py-1 text-center italic text-gray-500"
-                  colSpan={4}
+                  colSpan={
+                    4 + (showNo ? 1 : 0) + (showMinggu ? 1 : 0) // total kolom yang hilang karena modul tidak punya kegiatan
+                  }
                 >
                   Tidak ada kegiatan pembelajaran
                 </td>
