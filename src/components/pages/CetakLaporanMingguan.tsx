@@ -27,7 +27,11 @@ const CetakLaporanMingguan = () => {
   const [mingguKe, setMingguKe] = useState<string>("Semua");
 
   const componentRef = useRef<HTMLDivElement>(null);
-  const tanggalCetak = new Date().toLocaleDateString("id-ID");
+  const tanggalCetak = new Date().toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long", // akan menampilkan nama bulan, contoh: "Juli"
+    year: "numeric",
+  });
 
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
@@ -81,7 +85,7 @@ const CetakLaporanMingguan = () => {
               value={mingguKe}
               onChange={(e) => setMingguKe(e.target.value)}
             >
-              <option value="all" className="text-gray-800">Semua</option>
+              <option value="Semua" className="text-gray-800">Semua</option>
               <option value="1" className="text-gray-800">Minggu Ke-1</option>
               <option value="2" className="text-gray-800">Minggu Ke-2</option>
               <option value="3" className="text-gray-800">Minggu Ke-3</option>
@@ -128,7 +132,7 @@ const CetakLaporanMingguan = () => {
               </tbody>
             </table>
 
-            <TabelDetailRekapan data={rekap} filterMinggu={mingguKe} showNo={true} showMinggu={false}/>
+            <TabelDetailRekapan data={rekap} filterMinggu={mingguKe} showNo={true} showMinggu={false} />
 
             <div className="w-full flex justify-around items-start pt-10">
               <div className="flex flex-col items-center text-xl gap-1">
