@@ -123,7 +123,7 @@ const CetakLaporanBulanan: React.FC<Props> = ({ siswaId }) => {
       {rekap.length > 0 && siswaDetail && (
         <>
           <div ref={componentRef} className="w-full flex flex-col gap-5 py-10 px-10">
-            <h2 className="text-center text-2x1 font-bold">Laporan Penilaian Bulanan</h2>
+            <h2 className="text-center text-2xl font-bold">Laporan Penilaian Bulanan</h2>
             <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
               <tbody className="border border-gray-400">
                 <tr className="h-16 border-b border-gray-400">
