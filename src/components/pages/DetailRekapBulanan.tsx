@@ -40,7 +40,7 @@ const DetailRekapBulanan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
     try {
       const { data } = await api.get(`/rekap/bulanan-by-siswa?siswaId=${id}`);
 
-      const hasil = data.rekap.map((item: any) => ({
+      const hasil = data.map((item: any) => ({
         ...item,
         bulan: convertBulan(item.bulan),
       }));
