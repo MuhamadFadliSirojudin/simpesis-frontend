@@ -28,7 +28,7 @@ const CetakLaporanBulanan: React.FC<Props> = ({ siswaId }) => {
   const [selectedSiswa, setSelectedSiswa] = useState<number>(0);
   const [siswaDetail, setSiswaDetail] = useState<Siswa | null>(null);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
-  const [bulan, setBulan] = useState<string>("all");
+  const [bulan, setBulan] = useState<string>("Semua");
 
   const componentRef = useRef<HTMLDivElement>(null);
   const tanggalCetak = new Date().toLocaleDateString("id-ID", {
@@ -55,7 +55,7 @@ const CetakLaporanBulanan: React.FC<Props> = ({ siswaId }) => {
     const { data } = await api.get(`/rekap/bulanan-laporan?siswaId=${selectedSiswa}`);
     setSiswaDetail(data.siswa);
     setRekap(
-      bulan === "all"
+      bulan === "Semua"
         ? data.rekap
         : data.rekap.filter((item: RekapItem) => item.bulan.toString() === bulan)
     );
@@ -94,19 +94,19 @@ const CetakLaporanBulanan: React.FC<Props> = ({ siswaId }) => {
               value={bulan}
               onChange={(e) => setBulan(e.target.value)}
             >
-              <option value="all">Semua</option>
-              <option value="1">Januari</option>
-              <option value="2">Februari</option>
-              <option value="3">Maret</option>
-              <option value="4">April</option>
-              <option value="5">Mei</option>
-              <option value="6">Juni</option>
-              <option value="7">Juli</option>
-              <option value="8">Agustus</option>
-              <option value="9">September</option>
-              <option value="10">Oktober</option>
-              <option value="11">November</option>
-              <option value="12">Desember</option>
+              <option value="Semua" className="text-gray-800">Semua</option>
+              <option value="Januari" className="text-gray-800">Januari</option>
+              <option value="Februari" className="text-gray-800">Februari</option>
+              <option value="Maret" className="text-gray-800">Maret</option>
+              <option value="April" className="text-gray-800">April</option>
+              <option value="Mei" className="text-gray-800">Mei</option>
+              <option value="Juni" className="text-gray-800">Juni</option>
+              <option value="Juli" className="text-gray-800">Juli</option>
+              <option value="Agustus" className="text-gray-800">Agustus</option>
+              <option value="September" className="text-gray-800">September</option>
+              <option value="Oktober" className="text-gray-800">Oktober</option>
+              <option value="November" className="text-gray-800">November</option>
+              <option value="Desember" className="text-gray-800">Desember</option>
             </select>
           </div>
         </div>
@@ -123,12 +123,16 @@ const CetakLaporanBulanan: React.FC<Props> = ({ siswaId }) => {
       {rekap.length > 0 && siswaDetail && (
         <>
           <div ref={componentRef} className="w-full flex flex-col gap-5 py-10 px-10">
-            <h2 className="text-center text-lg font-bold mb-4">Laporan Penilaian Bulanan</h2>
+            <h2 className="text-center text-2x1 font-bold">Laporan Penilaian Bulanan</h2>
             <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
-              <tbody className="mb-4 space-y-1">
+              <tbody className="border border-gray-400">
+                <tr className="h-16 border-b border-gray-400">
+                  <td className="align-top w-[35%] px-4 py-2">Bulan Ke</td>
+                  <td className="align-top px-4 py-2">{bulan}</td>
+                </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
-                  <td className="align-top px-4 py-2">{siswaDetail.waliKelas || "-"}</td>
+                  <td className="align-top px-4 py-2">{siswaDetail.guru?.nama || "-"}</td>
                 </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Fase/Kelompok</td>
@@ -156,7 +160,6 @@ const CetakLaporanBulanan: React.FC<Props> = ({ siswaId }) => {
                 <p className="font-semibold">NUPTK. 3859764665300042</p>
               </div>
               <div className="flex flex-col items-center text-xl gap-1">
-                <p className="font-semibold">&nbsp;</p>
                 <p>Tasikmalaya, {tanggalCetak}</p>
                 <p>Wali Kelas,</p>
                 <div className="h-20" />

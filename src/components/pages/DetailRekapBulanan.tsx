@@ -58,9 +58,9 @@ const DetailRekapBulanan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center gap-5 p-8">
-      <div className="w-full flex justify-between items-end mb-4">
-        <div className="w-1/2">
+    <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
+      <div className="flex shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7 mb-6">
+        <div className="flex flex-col gap-2 w-full">
           <label htmlFor="nama" className="font-semibold text-base">
             Pilih Siswa
           </label>
@@ -73,36 +73,46 @@ const DetailRekapBulanan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             options={listSiswa}
           />
         </div>
-        <div className="flex gap-2 items-center">
-          <label className="text-base font-semibold">Filter Bulan:</label>
+        <div className="flex flex-col gap-2 w-full">
+          <label className="text-base font-semibold">
+            Filter Bulan
+          </label>
           <select
-            className="border px-2 py-1 rounded"
+            className="block w-full appearance-none bg-white border border-gray-400 text-black font-medium px-4 py-3 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-900 transition-all"
             value={filterBulan}
             onChange={(e) => setFilterBulan(e.target.value)}
           >
-            <option value="Semua">Semua</option>
-            <option value="Januari">Januari</option>
-            <option value="Februari">Februari</option>
-            <option value="Maret">Maret</option>
-            <option value="April">April</option>
-            <option value="Mei">Mei</option>
-            <option value="Juni">Juni</option>
-            <option value="Juli">Juli</option>
-            <option value="Agustus">Agustus</option>
-            <option value="September">September</option>
-            <option value="Oktober">Oktober</option>
-            <option value="November">November</option>
-            <option value="Desember">Desember</option>
+            <option value="Semua" className="text-gray-800">Semua</option>
+            <option value="Januari" className="text-gray-800">Januari</option>
+            <option value="Februari" className="text-gray-800">Februari</option>
+            <option value="Maret" className="text-gray-800">Maret</option>
+            <option value="April" className="text-gray-800">April</option>
+            <option value="Mei" className="text-gray-800">Mei</option>
+            <option value="Juni" className="text-gray-800">Juni</option>
+            <option value="Juli" className="text-gray-800">Juli</option>
+            <option value="Agustus" className="text-gray-800">Agustus</option>
+            <option value="September" className="text-gray-800">September</option>
+            <option value="Oktober" className="text-gray-800">Oktober</option>
+            <option value="November" className="text-gray-800">November</option>
+            <option value="Desember" className="text-gray-800">Desember</option>
           </select>
         </div>
       </div>
+      
+      {siswaId === null && (
+        <p className="text-center py-4">Silakan pilih siswa untuk melihat detail rekap.</p>
+      )}
 
-      <TabelDetailBulanan
-        data={rekap}
-        filterBulan={filterBulan}
-        showNo={true}
-        showBulan={true}
-      />
+      {siswaId !== null && rekap.length === 0 && (
+        <p className="text-center py-4">Belum ada data rekap untuk siswa ini.</p>
+      )}
+
+      {siswaId !== null && rekap.length > 0 && (
+        <TabelDetailBulanan
+          data={rekap}
+          filterBulan={filterBulan}
+        />
+      )}
     </div>
   );
 };
