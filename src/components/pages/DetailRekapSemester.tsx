@@ -52,7 +52,7 @@ const DetailRekapSemester: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
   };
 
   const convertSemester = (semesterNumber: number): string => {
-    return semesterNumber === 1 ? "Semester 1 (Juli–Desember)" : "Semester 2 (Januari–Juni)";
+    return semesterNumber === 1 ? "1" : "2";
   };
 
   useEffect(() => {
@@ -98,8 +98,8 @@ const DetailRekapSemester: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
             onChange={(e) => setFilterSemester(e.target.value)}
           >
             <option value="Semua" className="text-gray-800">Semua</option>
-            <option value="Semester 1 (Juli–Desember)" className="text-gray-800">Semester 1 (Juli–Desember)</option>
-            <option value="Semester 2 (Januari–Juni)" className="text-gray-800">Semester 2 (Januari–Juni)</option>
+            <option value="1" className="text-gray-800">Semester 1</option>
+            <option value="2" className="text-gray-800">Semester 2</option>
           </select>
         </div>
       </div>
