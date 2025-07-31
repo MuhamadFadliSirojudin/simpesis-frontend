@@ -27,7 +27,13 @@ const DetailRekapBulanan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
 
   const fetchSiswa = async () => {
     const { data } = await api.get("/siswa");
-    setListSiswa(data.data);
+    const siswaList = data.data;
+      const siswaWithPlaceholder = [
+        { id: 0, nama: "Pilih Siswa", semester: "" },
+        ...siswaList,
+      ];
+
+    setListSiswa(siswaWithPlaceholder);
   };
 
   const fetchRekap = async (id: number) => {
@@ -57,6 +63,19 @@ const DetailRekapBulanan: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
     fetchSiswa();
   }, []);
 
+  useEffect(() => {
+    if (propsSiswaId !== undefined) {
+      setSiswaId(propsSiswaId);
+      fetchRekap(propsSiswaId);
+    }
+  }, [propsSiswaId]);
+
+  useEffect(() => {
+    if (siswaId && !propsSiswaId === undefined) {
+      fetchRekap(siswaId);
+    }
+  }, [siswaId]);
+  
   return (
     <div className="w-full gap-10 shadow rounded-lg bg-[#f4f4f9] p-8">
       <div className="flex shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7 mb-6">
