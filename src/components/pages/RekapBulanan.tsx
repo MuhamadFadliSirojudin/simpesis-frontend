@@ -18,7 +18,7 @@ const TabRekapBulanan = ({ onLihatRekap, onCetakLaporan }: {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await api.get("/rekap/bulanan-by-siswa"); // GANTI ENDPOINT
+        const { data } = await api.get("/rekap/bulanan"); // GANTI ENDPOINT
         const mapped = data.map((item: any) => ({
           id: item.id_siswa,
           nama: item.nama_siswa,
