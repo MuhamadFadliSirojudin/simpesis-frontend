@@ -127,7 +127,7 @@ const CetakLaporanBulanan: React.FC<Props> = ({ siswaId }) => {
             <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
               <tbody className="border border-gray-400">
                 <tr className="h-16 border-b border-gray-400">
-                  <td className="align-top w-[35%] px-4 py-2">Bulan Ke</td>
+                  <td className="align-top w-[35%] px-4 py-2">Bulan</td>
                   <td className="align-top px-4 py-2">{bulan}</td>
                 </tr>
                 <tr className="h-16 border-b border-gray-400">

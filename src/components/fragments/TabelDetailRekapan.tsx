@@ -1,4 +1,3 @@
-// File: TabelDetailRekapan.tsx
 import React from "react";
 
 interface RekapItem {
