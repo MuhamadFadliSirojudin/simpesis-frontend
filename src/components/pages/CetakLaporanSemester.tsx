@@ -96,8 +96,8 @@ const CetakLaporanSemester: React.FC<Props> = ({ siswaId }) => {
               onChange={(e) => setSemester(e.target.value)}
             >
               <option value="Semua" className="text-gray-800">Semua</option>
-              <option value="1" className="text-gray-800">Semester 1 (Juli - Des)</option>
-              <option value="2" className="text-gray-800">Semester 2 (Jan - Jun)</option>
+              <option value="1" className="text-gray-800">Semester 1</option>
+              <option value="2" className="text-gray-800">Semester 2</option>
             </select>
           </div>
         </div>
