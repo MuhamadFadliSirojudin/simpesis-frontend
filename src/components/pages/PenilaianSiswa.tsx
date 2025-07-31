@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PenilaianHarian from "../pages/PenilaianHarian";
+import KelolaSiswa from "./KelolaSiswa";
 import PenilaianMingguan from "../pages/PenilaianMingguan";
 import PenilaianBulanan from "../pages/PenilaianBulanan";
 import api from "../../libs/axios"; // pastikan import ini sudah ada
@@ -8,7 +8,7 @@ import PenilaianSemester from "./PenilaianSemester";
 
 const PenilaianSiswa = () => {
     const { siswaId } = useParams();
-    const [activeTab, setActiveTab] = useState<"harian" | "mingguan" | "bulanan" | "semester">("harian");
+    const [activeTab, setActiveTab] = useState<"kelola" | "harian" | "mingguan" | "bulanan" | "semester">("harian");
     const [siswaNama, setSiswaNama] = useState("");
     useEffect(() => {
         if (!siswaId) return;
@@ -28,11 +28,17 @@ const PenilaianSiswa = () => {
 
     return (
         <div className="p-6 bg-[#f4f4f9] min-h-screen">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Penilaian Siswa</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-center">Kelola Siswa</h2>
             <h2 className="text-xl font-semibold mb-4 text-center">{siswaNama}</h2>
 
             {/* Tab Navigasi */}
             <div className="flex gap-4 justify-center mb-8">
+                <button
+                    onClick={() => setActiveTab("kelola")}
+                    className={`px-4 py-2 rounded ${activeTab === "kelola" ? "bg-blue-800 text-white" : "bg-gray-200 text-black"}`}
+                >
+                    Kelola Siswa
+                </button>
                 <button
                     onClick={() => setActiveTab("harian")}
                     className={`px-4 py-2 rounded ${activeTab === "harian" ? "bg-blue-800 text-white" : "bg-gray-200 text-black"}`}
@@ -61,8 +67,9 @@ const PenilaianSiswa = () => {
 
             {/* Konten Tab */}
             <div className="bg-white p-6 rounded shadow">
-                {activeTab === "harian" && <PenilaianHarian />}
-                {activeTab === "mingguan" && <PenilaianMingguan />}
+                {activeTab === "kelola" && <KelolaSiswa/>}
+                {activeTab === "harian" && <div>Rekap Harian</div>}
+                {activeTab === "mingguan" && <PenilaianMingguan/>}
                 {activeTab === "bulanan" && <PenilaianBulanan/>}
                 {activeTab === "semester" && <PenilaianSemester/>}
             </div>

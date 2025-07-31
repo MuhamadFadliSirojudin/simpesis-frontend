@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ModulInput from "../pages/ModulInput";
-import PembelajaranInput from "../pages/PembelajaranInput";
+import ModulInput from "./ModulInput";
+import PembelajaranInput from "./PembelajaranInput";
 import NilaiIInput from "./NilaiIInput";
 import GetReport from "./CetakLaporanHarian";
 
