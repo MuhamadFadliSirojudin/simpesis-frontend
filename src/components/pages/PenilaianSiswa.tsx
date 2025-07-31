@@ -4,6 +4,7 @@ import PenilaianHarian from "../pages/PenilaianHarian";
 import PenilaianMingguan from "../pages/PenilaianMingguan";
 import PenilaianBulanan from "../pages/PenilaianBulanan";
 import api from "../../libs/axios"; // pastikan import ini sudah ada
+import PenilaianSemester from "./PenilaianSemester";
 
 const PenilaianSiswa = () => {
     const { siswaId } = useParams();
@@ -63,7 +64,7 @@ const PenilaianSiswa = () => {
                 {activeTab === "harian" && <PenilaianHarian />}
                 {activeTab === "mingguan" && <PenilaianMingguan />}
                 {activeTab === "bulanan" && <PenilaianBulanan/>}
-                {activeTab === "semester" && <div>📕 Rekap dari Penilaian Bulanan</div>}
+                {activeTab === "semester" && <PenilaianSemester/>}
             </div>
         </div>
     );
