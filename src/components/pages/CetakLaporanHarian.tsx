@@ -1,161 +1,150 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "../fragments/Button";
-import Dropdown from "../fragments/Dropdown";
-import TabelReport from "../fragments/TabelReport";
-import api from "../../libs/axios";
-import { Modul, NilaiKegiatan, Siswa } from "../../types";
-import DropdownSiswa from "../fragments/DropdownSiswa";
-import toast from "react-hot-toast";
 import { useReactToPrint } from "react-to-print";
-import swal from "../../libs/swal";
+import api from "../../libs/axios";
+import { Siswa } from "../../types";
+import Button from "../fragments/Button";
+import DropdownSiswa from "../fragments/DropdownSiswa";
+import TabelDetailHarian from "../fragments/TabelDetailHarian";
 
-const GetReport = () => {
-  const [selectedModul, setSelectedModul] = useState<number>(0);
-  const [selectedSiswa, setSelectedSiswa] = useState<number>(0);
-  const [listModul, setListModul] = useState<Modul[]>([]);
+interface RekapItem {
+  tanggal: string;
+  modul: string;
+  jumlah: number;
+  rataRata: number;
+  kegiatanList: {
+    nama: string;
+    nilai: number;
+  }[];
+  walikelas: string;
+  nuptk: string;
+}
+
+interface Props {
+  siswaId?: number;
+}
+
+const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
-  const [reportData, setReportData] = useState<NilaiKegiatan[]>([]);
-
+  const [selectedSiswa, setSelectedSiswa] = useState<number>(0);
+  const [siswaDetail, setSiswaDetail] = useState<Siswa | null>(null);
+  const [rekap, setRekap] = useState<RekapItem[]>([]);
   const componentRef = useRef<HTMLDivElement>(null);
+
+  const tanggalCetak = new Date().toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
   });
 
-  const handleClickPrint = () => {
-    handlePrint();
-  };
-
   const fetchSiswa = async () => {
     const { data } = await api.get("/siswa");
     const addedData: Siswa[] = [
-      { id: 0, kelompok: "no", nama: "Pilih Siswa", semester: 0 },
+      { id: 0, nama: "Pilih Siswa", kelompok: "", semester: 0, totalNilai: 0 },
       ...data.data,
     ];
-
     setListSiswa(addedData);
   };
 
-  const fetchModul = async () => {
-    const { data } = await api.get("/modul");
-    const addedData: Modul[] = [
-      { id: 0, penyusun: "kosong", topik: "Pilih Modul", tujuan: "kosong" },
-      ...data.data,
-    ];
-
-    setListModul(addedData);
-  };
-
-  const getReport = async () => {
-    if (!selectedModul || !selectedSiswa) {
-      toast.error("Siswa atau modul belum dipilih");
-      return;
-    }
-
-    const data = await api.get(
-      `/nilai/${selectedSiswa}?modulId=${selectedModul}`
-    );
-
-    if (data.data.data.length == 0) {
-      toast.error("Data belum ada");
-    }
-
-    setReportData(data.data.data);
-  };
-
-  const deleteKegiatan = async (modulId: number, siswaId: number) => {
-    swal
-      .fire({
-        title: "Hapus laporan?",
-        text: "Anda tidak bisa mengembalikannya",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Ya",
-        cancelButtonText: "Tidak",
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            const { data } = await api.delete(
-              `/nilai?siswaId=${siswaId}&modulId=${modulId}`
-            );
-
-            if (data) {
-              toast.success("Berhasil menghapus laporan nilai");
-            }
-            window.location.reload();
-          } catch (error) {
-            toast.error("Gagal menghapus laporan nilai");
-          }
-        }
-      });
+  const getLaporan = async () => {
+    if (!selectedSiswa) return;
+    const { data } = await api.get(`/rekap/harian-laporan?siswaId=${selectedSiswa}`);
+    setSiswaDetail(data.siswa);
+    setRekap(data.rekap);
   };
 
   useEffect(() => {
-    fetchModul();
     fetchSiswa();
   }, []);
 
   useEffect(() => {
-    fetchSiswa();
-  }, [selectedModul]);
+    if (siswaId) {
+      setSelectedSiswa(siswaId);
+    }
+  }, [siswaId]);
 
   return (
     <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-8">
-      <div className="flex flex-col justify-between shadow-form-container w-full  bg-white p-[2rem] rounded-lg text-[#333] gap-7">
+      <div className="flex flex-col justify-between shadow-form-container w-full bg-white p-[2rem] rounded-lg text-[#333] gap-7">
         <div className="flex gap-10 justify-end items-end">
-          <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="topik" className="text-base font-semibold">
-              Pilih Modul
-            </label>
-            <Dropdown
-              options={listModul}
-              value={selectedModul}
-              onChange={setSelectedModul}
-            />
-          </div>
-          <div className="flex flex-col gap-2 w-full">
+          <div className="flex flex-col w-full gap-2">
             <label htmlFor="nama" className="text-base font-semibold">
-              Pilih siswa
+              Pilih Siswa
             </label>
             <DropdownSiswa
-              onChange={setSelectedSiswa}
               options={listSiswa}
               value={selectedSiswa}
+              onChange={setSelectedSiswa}
             />
           </div>
         </div>
         <Button
           type="button"
           variant="custom"
+          onClick={getLaporan}
           className="bg-blue-900 text-sm text-nowrap text-white hover:bg-blue-800 cursor-pointer h-12 px-15"
-          onClick={getReport}
         >
-          Ambil Laporan Harian
+          Ambil Rekap Harian
         </Button>
       </div>
 
-      <TabelReport data={reportData} ref={componentRef} />
-      {reportData.length !== 0 && (
-        <div className="w-full flex justify-end gap-10">
-          <Button className="h-12" onClick={handleClickPrint}>
-            Print Laporan
-          </Button>
-          <Button
-            variant={"custom"}
-            className="bg-red-600 text-white hover:bg-red-500 active:bg-red-700 h-12"
-            onClick={() =>
-              deleteKegiatan(reportData[0].id_modul, reportData[0].id_siswa)
-            }
-          >
-            Hapus Laporan Nilai
-          </Button>
-        </div>
+      {rekap.length > 0 && siswaDetail && (
+        <>
+          <div ref={componentRef} className="w-full flex flex-col gap-5 py-10 px-10">
+            <h2 className="text-center text-2xl font-bold">Laporan Penilaian Harian</h2>
+            <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
+              <tbody className="border border-gray-400">
+                <tr className="h-16 border-b border-gray-400">
+                  <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
+                  <td className="align-top px-4 py-2">{siswaDetail.guru?.nama || "-"}</td>
+                </tr>
+                <tr className="h-16 border-b border-gray-400">
+                  <td className="align-top w-[35%] px-4 py-2">Fase/Kelompok</td>
+                  <td className="align-top px-4 py-2">{siswaDetail.kelompok || "-"}</td>
+                </tr>
+                <tr className="h-16 border-b border-gray-400">
+                  <td className="align-top w-[35%] px-4 py-2">Nama Siswa</td>
+                  <td className="align-top px-4 py-2">{siswaDetail.nama}</td>
+                </tr>
+                <tr className="h-16 border-b border-gray-400">
+                  <td className="align-top w-[35%] px-4 py-2">Tanggal Cetak</td>
+                  <td className="align-top px-4 py-2">{tanggalCetak}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <TabelDetailHarian data={rekap} showNo={true} showTanggal={true} />
+
+            <div className="w-full flex justify-around items-start pt-10">
+              <div className="flex flex-col items-center text-xl gap-1">
+                <p >Mengetahui :</p>
+                <p >Kepala Sekolah</p>
+                <div className="h-20" />
+                <p className="font-semibold">Putri Irma Susanti, M.Pd.</p>
+                <p className="font-semibold">NUPTK. 3859764665300042</p>
+              </div>
+              <div className="flex flex-col items-center text-xl gap-1">
+                <p >Tasikmalaya, {tanggalCetak}</p>
+                <p >Wali Kelas,</p>
+                <div className="h-20" />
+                <p className="font-semibold">{siswaDetail.guru?.nama || "-"}</p>
+                <p className="font-semibold">NUPTK. {siswaDetail.guru?.nuptk || "-"}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-full flex justify-end gap-10">
+            <Button onClick={() => handlePrint()} className="h-12">
+              Print Laporan
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );
 };
 
-export default GetReport;
+export default CetakLaporanHarian;
