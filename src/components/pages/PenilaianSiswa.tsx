@@ -9,7 +9,7 @@ import PenilaianHarian from "./PenilaianHarian";
 
 const PenilaianSiswa = () => {
     const { siswaId } = useParams();
-    const [activeTab, setActiveTab] = useState<"kelola" | "harian" | "mingguan" | "bulanan" | "semester">("harian");
+    const [activeTab, setActiveTab] = useState<"kelola" | "harian" | "mingguan" | "bulanan" | "semester">("kelola");
     const [siswaNama, setSiswaNama] = useState("");
     useEffect(() => {
         if (!siswaId) return;

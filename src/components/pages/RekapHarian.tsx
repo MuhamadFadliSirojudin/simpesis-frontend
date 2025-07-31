@@ -7,6 +7,7 @@ import Button from "../fragments/Button";
 interface SiswaRekap {
   id: number;
   nama: string;
+  modul: string;
   jumlahNilai: number;
   rataRata: number;
 }
@@ -24,6 +25,7 @@ const TabRekapHarian = ({ onLihatRekap, onCetakLaporan }: {
         const mapped = data.map((item: any) => ({
           id: item.id_siswa,
           nama: item.nama_siswa,
+          modul: item.nama_modul,
           jumlahNilai: item.jumlah_nilai,
           rataRata: item.rata_rata,
         }));
@@ -44,6 +46,7 @@ const TabRekapHarian = ({ onLihatRekap, onCetakLaporan }: {
             <tr className="bg-blue-900 text-white">
               <th className="border px-4 py-2 text-center">No</th>
               <th className="border px-4 py-2 text-center">Nama Siswa</th>
+              <th className="border px-4 py-2 text-center">Nama Modul</th>
               <th className="border px-4 py-2 text-center">Jumlah Nilai</th>
               <th className="border px-4 py-2 text-center">Rata-rata</th>
               <th className="border px-4 py-2 text-center">Aksi</th>
@@ -54,6 +57,7 @@ const TabRekapHarian = ({ onLihatRekap, onCetakLaporan }: {
               <tr key={siswa.id}>
                 <td className="border px-4 py-2 text-center">{index + 1}</td>
                 <td className="border px-4 py-2">{siswa.nama}</td>
+                <td className="border px-4 py-2">{siswa.modul}</td>
                 <td className="border px-4 py-2 text-center">{siswa.jumlahNilai}</td>
                 <td className="border px-4 py-2 text-center">
                   {siswa.rataRata !== undefined ? siswa.rataRata.toFixed(1) : '-'}
