@@ -29,6 +29,7 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
   const [siswaDetail, setSiswaDetail] = useState<Siswa | null>(null);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
   const componentRef = useRef<HTMLDivElement>(null);
+  const [filterTanggal, setFilterTanggal] = useState<string>("Semua");
 
   const tanggalCetak = new Date().toLocaleDateString("id-ID", {
     day: "numeric",
@@ -80,6 +81,19 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
               onChange={setSelectedSiswa}
             />
           </div>
+          <div className="flex flex-col gap-2 w-full">
+            <label className="text-base font-semibold">
+              Filter Tanggal
+            </label>
+            <input
+              type="date"
+              className="block w-full bg-white border border-gray-400 text-black font-medium px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-900 transition-all"
+              value={filterTanggal === "Semua" ? "" : filterTanggal}
+              onChange={(e) =>
+                setFilterTanggal(e.target.value === "" ? "Semua" : e.target.value)
+              }
+            />
+          </div>
         </div>
         <Button
           type="button"
@@ -97,6 +111,10 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
             <h2 className="text-center text-2xl font-bold">Laporan Penilaian Harian</h2>
             <table className="w-full min-w-full bg-white border border-gray-400 rounded-xl shadow">
               <tbody className="border border-gray-400">
+                <tr className="h-16 border-b border-gray-400">
+                  <td className="align-top w-[35%] px-4 py-2">Hari/Tanggal</td>
+                  <td className="align-top px-4 py-2">{siswaDetail.guru?.nama || "-"}</td>
+                </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
                   <td className="align-top px-4 py-2">{siswaDetail.guru?.nama || "-"}</td>
@@ -116,7 +134,7 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
               </tbody>
             </table>
 
-            <TabelDetailHarian data={rekap} showNo={true} showTanggal={true} />
+            <TabelDetailHarian data={rekap} showNo={true} showTanggal={false} />
 
             <div className="w-full flex justify-around items-start pt-10">
               <div className="flex flex-col items-center text-xl gap-1">
