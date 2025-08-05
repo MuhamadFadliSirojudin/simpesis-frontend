@@ -113,7 +113,7 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
               <tbody className="border border-gray-400">
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Hari/Tanggal</td>
-                  <td className="align-top px-4 py-2">{siswaDetail.guru?.nama || "-"}</td>
+                  <td className="align-top px-4 py-2">{}</td>
                 </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
