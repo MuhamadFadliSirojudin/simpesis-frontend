@@ -54,7 +54,11 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
     if (!selectedSiswa) return;
     const { data } = await api.get(`/rekap/harian-laporan?siswaId=${selectedSiswa}`);
     setSiswaDetail(data.siswa);
-    setRekap(data.rekap);
+    setRekap(
+      filterTanggal === "Semua"
+        ? data.rekap
+        : data.rekap.filter((item: RekapItem) => item.tanggal.toString() === filterTanggal)
+    );
   };
 
   useEffect(() => {
@@ -134,7 +138,7 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
               </tbody>
             </table>
 
-            <TabelDetailHarian data={rekap} showNo={true} showTanggal={false} />
+            <TabelDetailHarian data={rekap} filterTanggal={filterTanggal} showNo={true} showTanggal={false} />
 
             <div className="w-full flex justify-around items-start pt-10">
               <div className="flex flex-col items-center text-xl gap-1">
