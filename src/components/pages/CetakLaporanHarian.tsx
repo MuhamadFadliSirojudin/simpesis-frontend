@@ -28,9 +28,9 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
   const [selectedSiswa, setSelectedSiswa] = useState<number>(0);
   const [siswaDetail, setSiswaDetail] = useState<Siswa | null>(null);
   const [rekap, setRekap] = useState<RekapItem[]>([]);
-  const componentRef = useRef<HTMLDivElement>(null);
   const [filterTanggal, setFilterTanggal] = useState<string>("Semua");
 
+  const componentRef = useRef<HTMLDivElement>(null);
   const tanggalCetak = new Date().toLocaleDateString("id-ID", {
     day: "numeric",
     month: "long",
@@ -113,7 +113,7 @@ const CetakLaporanHarian: React.FC<Props> = ({ siswaId }) => {
               <tbody className="border border-gray-400">
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Hari/Tanggal</td>
-                  <td className="align-top px-4 py-2">{}</td>
+                  <td className="align-top px-4 py-2">{filterTanggal}</td>
                 </tr>
                 <tr className="h-16 border-b border-gray-400">
                   <td className="align-top w-[35%] px-4 py-2">Wali Kelas</td>
