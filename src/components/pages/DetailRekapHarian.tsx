@@ -31,7 +31,7 @@ const DetailRekapHarian: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
       const { data } = await api.get("/siswa");
       const siswaList = data.data;
       const siswaWithPlaceholder = [
-        { id: 0, nama: "Pilih Siswa", semester: "" },
+        { id: 0, nama: "Pilih Siswa" },
         ...siswaList,
       ];
       setListSiswa(siswaWithPlaceholder);
