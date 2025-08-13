@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 const ModulInput = () => {
   const [listModul, setListModul] = useState<Modul[]>([]);
+  const [editId, setEditId] = useState<number | null>(null);
 
   const [formData, setFormData] = useState({
     topik: "",
@@ -30,15 +31,20 @@ const ModulInput = () => {
     }
 
     try {
-      const res = await api.post("/modul", formData);
-
-      if (res.status) {
-        toast.success("Berhasil menambahkan modul");
+      if (editId) {
+        const res = await api.put(`/modul/${editId}`, formData);
+        if (res.status) {
+          toast.success("Berhasil memperbarui modul");
+        }
+      } else {
+        const res = await api.post("/modul", formData);
+        if (res.status) {
+          toast.success("Berhasil menambahkan modul");
+        }
       }
-
       fetchModul();
     } catch (error) {
-      toast.error("error menambahkan modul");
+      toast.error("Terjadi kesalahan saat menyimpan modul");
     } finally {
       setFormData({
         penyusun: "",
@@ -46,14 +52,30 @@ const ModulInput = () => {
         tujuan: "",
         nip: "",
       });
+      setEditId(null);
     }
   };
 
   const fetchModul = async () => {
     const { data } = await api.get("/modul");
-    console.log(data);
-
     setListModul(data.data);
+  };
+
+  const startEdit = async (id: number) => {
+    try {
+      const { data } = await api.get(`/modul/${id}`);
+      if (data?.data) {
+        setFormData({
+          topik: data.data.topik || "",
+          penyusun: data.data.penyusun || "",
+          tujuan: data.data.tujuanPembelajaran || "",
+          nip: data.data.nip || "",
+        });
+        setEditId(id);
+      }
+    } catch (error) {
+      toast.error("Gagal mengambil data modul");
+    }
   };
 
   useEffect(() => {
@@ -67,7 +89,7 @@ const ModulInput = () => {
         className="flex flex-col shadow-form-container w-[50%]  bg-white p-[2rem] rounded-lg text-[#333] gap-7"
       >
         <h1 className="text-center font-semibold text-black text-2xl ">
-          Tambah Modul
+          {editId ? "Edit Modul" : "Tambah Modul"}
         </h1>
         <div className="flex flex-col gap-2">
           <label htmlFor="topik" className="text-base font-semibold">
@@ -127,10 +149,10 @@ const ModulInput = () => {
           variant="custom"
           className="bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
         >
-          Tambahkan
+          {editId ? "Simpan Perubahan" : "Tambahkan"}
         </Button>
       </form>
-      <TableListModul data={listModul} fetch={fetchModul} />
+      <TableListModul data={listModul} fetch={fetchModul} onEdit={startEdit} />
     </div>
   );
 };

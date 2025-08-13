@@ -5,9 +5,11 @@ import { Modul } from "../../types";
 const TableListModul = ({
   data,
   fetch,
+  onEdit,
 }: {
   data: Modul[];
   fetch: () => void;
+  onEdit: (id: number) => void;
 }) => {
   const deleteModul = async (id: number) => {
     try {
@@ -20,6 +22,7 @@ const TableListModul = ({
       toast.error("Gagal menghapus modul yang mungkin memiliki nilai");
     }
   };
+
   return (
     <div className="overflow-x-autos rounded w-full">
       {data?.length === 0 ? (
@@ -32,7 +35,7 @@ const TableListModul = ({
             <tr>
               <th className="border px-4 py-3 w-[10%] text-center">No</th>
               <th className="border px-4 py-3 text-center">Topik/Sub Topik</th>
-              <th className="border px-4 py-3 w-[10%] text-center">Aksi</th>
+              <th className="border px-4 py-3 w-[20%] text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -45,6 +48,15 @@ const TableListModul = ({
                 <td className="border px-4 py-2">{modul.topik}</td>
                 <td className="px-4 py-2 border">
                   <div className="flex justify-center items-center gap-2">
+                    <button
+                      className="text-sm text-white cursor-pointer bg-green-500 hover:bg-green-600 px-3 py-1 rounded"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onEdit(modul.id);
+                      }}
+                    >
+                      Edit
+                    </button>
                     <button
                       className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
                       onClick={(e) => {
