@@ -25,7 +25,7 @@ const DropdownSiswa: React.FC<DropdownSiswaProps> = ({
           options.map((option) => (
             <option key={option.id} value={option.id} className="text-gray-800">
               {option.id !== 0
-                ? `${option.nama} | Semester ${option.semester}`
+                ? `${option.nama}`
                 : option.nama}
             </option>
           ))

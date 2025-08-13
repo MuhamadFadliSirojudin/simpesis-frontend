@@ -30,7 +30,7 @@ const DetailRekapSemester: React.FC<Props> = ({ siswaId: propsSiswaId }) => {
     const { data } = await api.get("/siswa");
     const siswaList = data.data;
     const siswaWithPlaceholder = [
-      { id: 0, nama: "Pilih Siswa" },
+      { id: 0, nama: "Pilih Siswa", semester: "" },
       ...siswaList,
     ];
     setListSiswa(siswaWithPlaceholder);
