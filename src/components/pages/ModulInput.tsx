@@ -68,7 +68,7 @@ const ModulInput = () => {
         setFormData({
           topik: data.data.topik || "",
           penyusun: data.data.penyusun || "",
-          tujuan: data.data.tujuanPembelajaran || "",
+          tujuan: data.data.tujuan || "",
           nip: data.data.nip || "",
         });
         setEditId(id);
