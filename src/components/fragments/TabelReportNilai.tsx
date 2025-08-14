@@ -34,7 +34,7 @@ const TabelReportNilai = ({
               {opt}
             </th>
           ))}
-          <th className="border px-4 py-3 text-center w-[20%]">
+          <th className="border px-4 py-3 text-center w-[15%]">
             Aksi
           </th>
         </tr>
