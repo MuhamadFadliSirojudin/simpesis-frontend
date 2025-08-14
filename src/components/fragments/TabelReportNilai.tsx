@@ -34,7 +34,7 @@ const TabelReportNilai = ({
               {opt}
             </th>
           ))}
-          <th className="border px-4 py-3 text-center w-[15%]">
+          <th className="border px-4 py-3 text-center w-[20%]">
             Aksi
           </th>
         </tr>
@@ -67,19 +67,21 @@ const TabelReportNilai = ({
                   {item.nilai === i + 1 ? "√" : " "}
                 </td>
               ))}
-              <td className="px-4 py-2 border text-center">
-                <button
-                  onClick={() => onEdit && onEdit(item)}
-                  className="text-sm text-white cursor-pointer bg-green-500 hover:bg-green-600 px-3 py-1 rounded"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => onDelete && onDelete(item.id)}
-                  className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
-                >
-                  Hapus
-                </button>
+              <td className="px-4 py-2 border">
+                <div className="flex justify-center items-center gap-2">
+                  <button
+                    onClick={() => onEdit && onEdit(item)}
+                    className="text-sm text-white cursor-pointer bg-green-500 hover:bg-green-600 px-3 py-1 rounded"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => onDelete && onDelete(item.id)}
+                    className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                  >
+                    Hapus
+                  </button>
+                </div>
               </td>
             </tr>
           ))
