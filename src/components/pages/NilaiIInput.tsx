@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { NilaiKegiatan } from "../../types";
 import TablePenilaian from "../fragments/TabelPenilaian";
 import Dropdown from "../fragments/Dropdown";
+import TabelReportNilai from "../fragments/TabelReportNilai";
 import { BaseDataNilai, Modul, Pembelajaran, Siswa } from "../../types";
 import api from "../../libs/axios";
 import DropdownSiswa from "../fragments/DropdownSiswa";
@@ -14,6 +16,7 @@ const NilaiIInput = () => {
   const [listSiswa, setListSiswa] = useState<Siswa[]>([]);
   const [listPembelajaran, setListPembelajaran] = useState<Pembelajaran[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [nilaiList, setNilaiList] = useState<NilaiKegiatan[]>([]);
 
   const fetchSiswa = async () => {
     const { data } = await api.get("/siswa");
@@ -65,6 +68,7 @@ const NilaiIInput = () => {
 
       if (res.status) {
         toast.success("Berhasil menambahkan data penilaian");
+        fetchNilaiList();
       }
     } catch (error: any) {
       if (error.status == 409) {
@@ -82,6 +86,43 @@ const NilaiIInput = () => {
     setListPembelajaran(data.data);
   };
 
+  const fetchNilaiList = async () => {
+    if (!selectedSiswa) return;
+    try {
+      const { data } = await api.get(`/nilai/by-siswa/${selectedSiswa}`);
+      setNilaiList(data.data);
+    } catch (err) {
+      console.error("Gagal ambil nilai siswa:", err);
+    }
+  };
+
+  // ✅ Edit nilai
+  const handleEditNilai = async (item: NilaiKegiatan) => {
+    const newNilai = prompt("Masukkan nilai baru:", item.nilai.toString());
+    if (!newNilai) return;
+
+    try {
+      await api.put(`/nilai/${item.id}`, { nilai: parseInt(newNilai) });
+      toast.success("Nilai berhasil diperbarui");
+      fetchNilaiList();
+    } catch (err) {
+      toast.error("Gagal update nilai");
+    }
+  };
+
+  // ✅ Hapus nilai
+  const handleDeleteNilai = async (id: number) => {
+    if (!confirm("Yakin ingin menghapus nilai ini?")) return;
+
+    try {
+      await api.delete(`/nilai/${id}`);
+      toast.success("Nilai berhasil dihapus");
+      fetchNilaiList();
+    } catch (err) {
+      toast.error("Gagal menghapus nilai");
+    }
+  };
+
   useEffect(() => {
     fetchModul();
     fetchSiswa();
@@ -90,6 +131,10 @@ const NilaiIInput = () => {
   useEffect(() => {
     getPembelajaran();
   }, [selectedModul]);
+
+  useEffect(() => {
+    fetchNilaiList();
+  }, [selectedSiswa]);
 
   return (
     <div className="min-h-[100vh] w-full flex flex-col items-center gap-5 justify-between bg-[#f4f4f9] p-8">
@@ -117,6 +162,12 @@ const NilaiIInput = () => {
           </div>
         </div>
         <TablePenilaian data={listPembelajaran} isLoading={isLoading} />
+
+        <TabelReportNilai
+          data={nilaiList}
+          onEdit={handleEditNilai}
+          onDelete={handleDeleteNilai}
+        />
       </form>
     </div>
   );
