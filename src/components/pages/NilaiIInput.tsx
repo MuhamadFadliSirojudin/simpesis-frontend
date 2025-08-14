@@ -66,13 +66,13 @@ const NilaiIInput = () => {
         data: sendArr,
       });
 
-      if (res.status) {
-        toast.success("Berhasil menambahkan data penilaian");
+      if (res.status === 201) {
+        toast.success(res.data.message || "Berhasil menambahkan data penilaian");
         fetchNilaiList();
       }
     } catch (error: any) {
-      if (error.status == 409) {
-        toast.error("Nilai siswa dengan modul tersebut sudah ada");
+      if (error.response?.status === 409) {
+        toast.error(error.response.data?.message || "Nilai siswa dengan modul tersebut sudah ada");
         return;
       }
       toast.error("Terjadi kesalahan pada server");
