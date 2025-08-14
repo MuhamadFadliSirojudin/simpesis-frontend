@@ -27,18 +27,18 @@ const TabelReportNilai: React.FC<TabelReportNilaiProps> = ({
           <th className="border px-4 py-3 text-center w-[25%]">
             Kegiatan Pembelajaran
           </th>
-          <th className="border px-4 py-3 text-center">
+          <th className="border px-4 py-3 text-center w-[20%]">
             Foto Karya
           </th>
           {opsiNilai.map((opt) => (
             <th
               key={opt}
-              className="border px-4 py-3 text-center"
+              className="border px-4 py-3 text-center w-[12%]"
             >
               {opt}
             </th>
           ))}
-          {showAksi && <th className="border px-4 py-3 text-center">
+          {showAksi && <th className="border px-4 py-3 text-center w-[12%]">
             Aksi
           </th>}
         </tr>
