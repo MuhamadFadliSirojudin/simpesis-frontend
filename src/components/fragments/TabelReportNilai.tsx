@@ -1,5 +1,12 @@
 import { NilaiKegiatan } from "../../types";
 
+interface TabelReportNilaiProps {
+  data: NilaiKegiatan[];
+  onEdit?: (item: NilaiKegiatan) => void;
+  onDelete?: (id: number) => void;
+  showActions?: boolean; // default true
+}
+
 const opsiNilai = [
   "Belum Muncul",
   "Muncul Sebagian Kecil",
@@ -7,14 +14,11 @@ const opsiNilai = [
   "Semuanya Muncul",
 ];
 
-const TabelReportNilai = ({
+const TabelReportNilai: React.FC<TabelReportNilaiProps> = ({
   data,
   onEdit,
   onDelete,
-}: {
-  data: NilaiKegiatan[];
-  onEdit?: (item: NilaiKegiatan) => void;
-  onDelete?: (id: number) => void;
+  showActions = true
 }) => {
   return (
     <table className="min-w-full border border-gray-200 rounded shadow bg-white">
@@ -34,9 +38,9 @@ const TabelReportNilai = ({
               {opt}
             </th>
           ))}
-          <th className="border px-4 py-3 text-center w-[15%]">
+          {showActions && <th className="border px-4 py-3 text-center w-[15%]">
             Aksi
-          </th>
+          </th>}
         </tr>
       </thead>
       <tbody>
@@ -67,22 +71,24 @@ const TabelReportNilai = ({
                   {item.nilai === i + 1 ? "√" : " "}
                 </td>
               ))}
-              <td className="px-4 py-2 border">
-                <div className="flex justify-center items-center gap-2">
-                  <button
-                    onClick={() => onEdit && onEdit(item)}
-                    className="text-sm text-white cursor-pointer bg-green-500 hover:bg-green-600 px-3 py-1 rounded"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => onDelete && onDelete(item.id)}
-                    className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
-                  >
-                    Hapus
-                  </button>
-                </div>
-              </td>
+              {showActions && (
+                <td className="px-4 py-2 border">
+                  <div className="flex justify-center items-center gap-2">
+                    <button
+                      onClick={() => onEdit && onEdit(item)}
+                      className="text-sm text-white cursor-pointer bg-green-500 hover:bg-green-600 px-3 py-1 rounded"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => onDelete && onDelete(item.id)}
+                      className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                    >
+                      Hapus
+                    </button>
+                  </div>
+                </td>
+              )}
             </tr>
           ))
         )}
