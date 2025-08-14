@@ -6,6 +6,12 @@ type Props = {
   data: NilaiKegiatan[];
 };
 
+const tanggalCetak = new Date().toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
 const TabelReport = forwardRef<HTMLDivElement, Props>(
   ({ data }: { data: NilaiKegiatan[] }, ref: Ref<HTMLDivElement>) => {
     return !data || data.length == 0 ? (
@@ -71,7 +77,7 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
 
           {/* Kolom Wali Kelas */}
           <div className="flex flex-col items-center text-xl gap-1">
-            <p className="font-semibold">&nbsp;</p>
+            <p >Tasikmalaya, {tanggalCetak}</p>
             <p >Wali Kelas,</p>
             <div className="h-20" /> {/* Spacer tanda tangan */}
             <p className="font-semibold">{data[0].modul.penyusun}</p>

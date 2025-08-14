@@ -93,7 +93,7 @@ const ModulInput = () => {
         </h1>
         <div className="flex flex-col gap-2">
           <label htmlFor="topik" className="text-base font-semibold">
-            Topik/Sub Topik
+            Nama Modul
           </label>
           <input
             type="text"

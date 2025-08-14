@@ -34,7 +34,7 @@ const TableListModul = ({
           <thead className="bg-blue-900 text-white">
             <tr>
               <th className="border px-4 py-3 w-[10%] text-center">No</th>
-              <th className="border px-4 py-3 text-center">Topik/Sub Topik</th>
+              <th className="border px-4 py-3 text-center">Nama Modul</th>
               <th className="border px-4 py-3 w-[20%] text-center">Aksi</th>
             </tr>
           </thead>
