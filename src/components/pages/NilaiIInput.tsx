@@ -89,7 +89,7 @@ const NilaiIInput = () => {
   const fetchNilaiList = async () => {
     if (!selectedSiswa) return;
     try {
-      const { data } = await api.get(`/nilai/by-siswa/${selectedSiswa}`);
+      const { data } = await api.get(`/nilai/${selectedSiswa}`);
       setNilaiList(data.data);
     } catch (err) {
       console.error("Gagal ambil nilai siswa:", err);
