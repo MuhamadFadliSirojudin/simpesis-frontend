@@ -4,7 +4,7 @@ interface TabelReportNilaiProps {
   data: NilaiKegiatan[];
   onEdit?: (item: NilaiKegiatan) => void;
   onDelete?: (id: number) => void;
-  showActions?: boolean; // default true
+  showAksi?: boolean; // default true
 }
 
 const opsiNilai = [
@@ -18,7 +18,7 @@ const TabelReportNilai: React.FC<TabelReportNilaiProps> = ({
   data,
   onEdit,
   onDelete,
-  showActions = true
+  showAksi = true,
 }) => {
   return (
     <table className="min-w-full border border-gray-200 rounded shadow bg-white">
@@ -38,7 +38,7 @@ const TabelReportNilai: React.FC<TabelReportNilaiProps> = ({
               {opt}
             </th>
           ))}
-          {showActions && <th className="border px-4 py-3 text-center w-[15%]">
+          {showAksi && <th className="border px-4 py-3 text-center w-[15%]">
             Aksi
           </th>}
         </tr>
@@ -71,7 +71,7 @@ const TabelReportNilai: React.FC<TabelReportNilaiProps> = ({
                   {item.nilai === i + 1 ? "√" : " "}
                 </td>
               ))}
-              {showActions && (
+              {showAksi && (
                 <td className="px-4 py-2 border">
                   <div className="flex justify-center items-center gap-2">
                     <button

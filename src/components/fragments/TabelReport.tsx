@@ -62,7 +62,7 @@ const TabelReport = forwardRef<HTMLDivElement, Props>(
           </tbody>
         </table>
 
-        <TabelReportNilai data={data} />
+        <TabelReportNilai data={data} showAksi={true}/>
 
         {/* Area tanda tangan */}
         <div className="w-full flex justify-around items-start pt-10">
