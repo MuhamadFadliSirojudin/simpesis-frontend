@@ -17,18 +17,18 @@ const Navbar = () => {
           <NavLink to={"/#academics"}>Academics</NavLink>
         </li>
         <li>
-          <NavLink to={"/#contact"}>Contact</NavLink>
+          <NavLink to={"/contact"}>Contact</NavLink>
         </li>
 
         {isAuthenticated && role === "admin" && (
           <li>
-            <NavLink to={"/#menu"}>Menu</NavLink>
+            <NavLink to={"/menu"}>Menu</NavLink>
           </li>
         )}
 
         {isAuthenticated && role === "guru" && (
           <li>
-            <NavLink to={"/#daftar-guru"}>Daftar Guru</NavLink>
+            <NavLink to={"/daftar-guru"}>Daftar Guru</NavLink>
           </li>
         )}
       </ul>
