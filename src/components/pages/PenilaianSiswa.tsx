@@ -28,7 +28,7 @@ const PenilaianSiswa = () => {
     }, [siswaId]);
 
     return (
-        <div className="p-6 bg-[#f4f4f9] min-h-screen">
+        <div className="p-6 gap-4 bg-[#f4f4f9] min-h-screen">
 
             {/* Tab Navigasi */}
             <div className="flex gap-4 justify-center mb-8">
