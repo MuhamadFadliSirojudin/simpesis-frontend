@@ -10,7 +10,7 @@ import PenilaianHarian from "./PenilaianHarian";
 const PenilaianSiswa = () => {
     const { siswaId } = useParams();
     const [activeTab, setActiveTab] = useState<"kelola" | "harian" | "mingguan" | "bulanan" | "semester">("kelola");
-    const [siswaNama, setSiswaNama] = useState("");
+    const [, setSiswaNama] = useState("");
     useEffect(() => {
         if (!siswaId) return;
 
@@ -29,8 +29,6 @@ const PenilaianSiswa = () => {
 
     return (
         <div className="p-6 bg-[#f4f4f9] min-h-screen">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Kelola Siswa</h2>
-            <h2 className="text-xl font-semibold mb-4 text-center">{siswaNama}</h2>
 
             {/* Tab Navigasi */}
             <div className="flex gap-4 justify-center mb-8">
