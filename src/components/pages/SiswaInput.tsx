@@ -88,7 +88,7 @@ const SiswaInput = () => {
         className="flex flex-col shadow-form-container w-[50%]  bg-white p-[2rem] rounded-lg text-[#333] gap-7"
       >
         <h1 className="text-center font-semibold text-black text-2xl ">
-          Tambah Siswa
+          {editId ? "Edit Siswa" : "Tambah Siswa"}
         </h1>
         <div className="flex w-full gap-5">
           <div className="flex flex-col gap-2 w-full">
@@ -136,7 +136,7 @@ const SiswaInput = () => {
           variant="custom"
           className="bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
         >
-          Tambahkan
+          {editId ? "Simpan Perubahan" : "Tambah"}
         </Button>
       </form>
       <TableSiswa data={listSiswa} fetch={fetchSiswa} onEdit={(siswa) => {
