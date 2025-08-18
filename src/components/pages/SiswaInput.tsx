@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 
 const SiswaInput = () => {
   const { guruId } = useParams();
-  
+
   useEffect(() => {
     if (guruId) {
       localStorage.setItem("guruId", guruId);
@@ -37,6 +37,8 @@ const SiswaInput = () => {
     setListSiswa(data.data);
   };
 
+  const [editId, setEditId] = useState<number | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -52,20 +54,26 @@ const SiswaInput = () => {
     }
 
     try {
-      console.log("Guru ID:", guruId);
-      const res = await api.post("/siswa", { ...formData, guruId: Number(guruId)});
-      if (res.status) {
-        fetchSiswa();
-        toast.success("Berhasil menambahkan siswa");
+      let res;
+      if (editId) {
+        // update siswa
+        res = await api.put(`/siswa/${editId}`, { ...formData, guruId: Number(guruId) });
+        if (res.status === 200) {
+          toast.success("Berhasil mengupdate siswa");
+        }
+      } else {
+        // tambah siswa
+        res = await api.post("/siswa", { ...formData, guruId: Number(guruId) });
+        if (res.status === 201) {
+          toast.success("Berhasil menambahkan siswa");
+        }
       }
+      fetchSiswa();
     } catch (error) {
-      toast.error("Gagal menambahkan siswa");
+      toast.error("Gagal menyimpan data siswa");
     } finally {
-      setFormData({
-        nama: "",
-        semester: "",
-        kelompok: "",
-      });
+      setFormData({ nama: "", semester: "", kelompok: "" });
+      setEditId(null);
     }
   };
 
@@ -131,7 +139,14 @@ const SiswaInput = () => {
           Tambahkan
         </Button>
       </form>
-      <TableSiswa data={listSiswa} fetch={fetchSiswa} />
+      <TableSiswa data={listSiswa} fetch={fetchSiswa} onEdit={(siswa) => {
+        setFormData({
+          nama: siswa.nama,
+          semester: siswa.semester.toString(),
+          kelompok: siswa.kelompok,
+        });
+        setEditId(siswa.id);
+      }} />
     </div>
   );
 };

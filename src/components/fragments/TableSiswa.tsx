@@ -3,7 +3,7 @@ import api from "../../libs/axios";
 import { Siswa } from "../../types";
 import { useNavigate } from "react-router-dom";
 
-const TableSiswa = ({ data, fetch }: { data: Siswa[]; fetch: () => void }) => {
+const TableSiswa = ({ data, fetch, onEdit }: { data: Siswa[]; fetch: () => void; onEdit: (siswa: Siswa) => void }) => {
   const guruId = localStorage.getItem("guruId");
   const navigate = useNavigate(); // ✅ Tambahkan ini
   const deleteSiswa = async (id: number) => {
@@ -48,6 +48,12 @@ const TableSiswa = ({ data, fetch }: { data: Siswa[]; fetch: () => void }) => {
                 <td className="px-4 py-2 border text-center">{siswa.totalNilai && siswa.totalNilai > 0 ? "✅" : "❌"}</td>
                 <td className="px-4 py-2 border">
                   <div className="flex justify-center items-center gap-2">
+                    <button
+                      className="text-sm text-white cursor-pointer bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded"
+                      onClick={() => onEdit(siswa)}
+                    >
+                      Edit
+                    </button>
                     <button
                       className="text-sm text-white cursor-pointer bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
                       onClick={(e) => {
